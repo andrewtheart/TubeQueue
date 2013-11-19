@@ -39,6 +39,7 @@
             this.ClearProcessingQueue = new System.Windows.Forms.Button();
             this.DownloadAndProcessButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.lvDownloads = new EXControls.EXListView();
             this.button2 = new System.Windows.Forms.Button();
             this.grab_url_of_video = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -142,7 +143,6 @@
             this.queue_menu_options = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rename_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
             this.delete_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
-            this.lvDownloads = new EXControls.EXListView();
             this.MainTabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -281,6 +281,20 @@
             this.label13.Size = new System.Drawing.Size(175, 24);
             this.label13.TabIndex = 32;
             this.label13.Text = "Download Progress";
+            // 
+            // lvDownloads
+            // 
+            this.lvDownloads.ControlPadding = 4;
+            this.lvDownloads.FullRowSelect = true;
+            this.lvDownloads.Location = new System.Drawing.Point(479, 438);
+            this.lvDownloads.MaximumSize = new System.Drawing.Size(655, 149);
+            this.lvDownloads.MinimumSize = new System.Drawing.Size(655, 149);
+            this.lvDownloads.Name = "lvDownloads";
+            this.lvDownloads.OwnerDraw = true;
+            this.lvDownloads.Size = new System.Drawing.Size(655, 149);
+            this.lvDownloads.TabIndex = 2;
+            this.lvDownloads.UseCompatibleStateImageBehavior = false;
+            this.lvDownloads.View = System.Windows.Forms.View.Tile;
             // 
             // button2
             // 
@@ -438,9 +452,9 @@
             this.button1.ForeColor = System.Drawing.Color.Blue;
             this.button1.Location = new System.Drawing.Point(526, 57);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(44, 26);
+            this.button1.Size = new System.Drawing.Size(40, 26);
             this.button1.TabIndex = 26;
-            this.button1.Text = " < 25";
+            this.button1.Text = "< 25";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -514,7 +528,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(622, 402);
+            this.tabPage6.Size = new System.Drawing.Size(622, 373);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "YouTube Website Search";
             this.tabPage6.ToolTipText = "YouTube Website Search (for single videos)";
@@ -527,7 +541,7 @@
             this.youtube_browser.Location = new System.Drawing.Point(3, 3);
             this.youtube_browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.youtube_browser.Name = "youtube_browser";
-            this.youtube_browser.Size = new System.Drawing.Size(616, 396);
+            this.youtube_browser.Size = new System.Drawing.Size(616, 367);
             this.youtube_browser.TabIndex = 0;
             this.youtube_browser.Url = new System.Uri("http://www.youtube.com", System.UriKind.Absolute);
             // 
@@ -537,7 +551,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(622, 402);
+            this.tabPage7.Size = new System.Drawing.Size(622, 373);
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "Media Library";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -940,7 +954,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(498, 377);
+            this.tabPage5.Size = new System.Drawing.Size(498, 348);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Preview";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -951,7 +965,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(492, 371);
+            this.webBrowser1.Size = new System.Drawing.Size(492, 342);
             this.webBrowser1.TabIndex = 0;
             // 
             // NoVideoSelectedYet
@@ -1367,20 +1381,6 @@
             this.delete_queue_menu_options.ToolTipText = "Delete the selected video(s)";
             this.delete_queue_menu_options.Click += new System.EventHandler(this.delete_queue_menu_options_Click);
             // 
-            // lvDownloads
-            // 
-            this.lvDownloads.ControlPadding = 4;
-            this.lvDownloads.FullRowSelect = true;
-            this.lvDownloads.Location = new System.Drawing.Point(479, 438);
-            this.lvDownloads.MaximumSize = new System.Drawing.Size(655, 149);
-            this.lvDownloads.MinimumSize = new System.Drawing.Size(655, 149);
-            this.lvDownloads.Name = "lvDownloads";
-            this.lvDownloads.OwnerDraw = true;
-            this.lvDownloads.Size = new System.Drawing.Size(655, 149);
-            this.lvDownloads.TabIndex = 2;
-            this.lvDownloads.UseCompatibleStateImageBehavior = false;
-            this.lvDownloads.View = System.Windows.Forms.View.Tile;
-            // 
             // TubeQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1391,7 +1391,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TubeQueue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "TubeQueue by Andrew Stein, build 1.55 - <INSERT DATE HERE>";
+            this.Text = "TubeQueue by Andrew Stein, build <buildno> - <INSERT DATE HERE>";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TubeQueue_FormClosing);
             this.Load += new System.EventHandler(this.TubeMasterForm_Load);
             this.Move += new System.EventHandler(this.TubeMasterForm_Move);
