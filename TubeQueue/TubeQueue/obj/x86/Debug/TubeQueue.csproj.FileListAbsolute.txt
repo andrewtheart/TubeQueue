@@ -17,3 +17,13 @@ C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\For
 C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.Properties.Resources.resources
 C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.csproj.GenerateResource.Cache
 C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.YoutubeWebsiteControls.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\bin\Debug\TubeQueue.exe.config
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.exe
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.pdb
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\bin\Debug\TubeQueue.exe
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\bin\Debug\TubeQueue.pdb
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.csprojResolveAssemblyReference.cache
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\Form1.TubeQueue.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.Properties.Resources.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.YoutubeWebsiteControls.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.csproj.GenerateResource.Cache

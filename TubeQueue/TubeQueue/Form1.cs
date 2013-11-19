@@ -1342,10 +1342,10 @@ namespace Form1
             tabControl1.Height = 399;
             tabControl1.SendToBack();
             youtube_browser.Width = 569;
-             youtube_browser.Height = 350;
+            youtube_browser.Height = 350;
 
-             grab_url_of_video.Visible = true;
-             maximizeYTbutton.Visible = true;
+            grab_url_of_video.Visible = true;
+            maximizeYTbutton.Visible = true;
 
         }
 
@@ -1761,10 +1761,15 @@ namespace Form1
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+
+
             if (tabControl1.SelectedTab.Name.Equals("YouTubeWebsiteSearchTab"))
             {
+
+
+                minimizeTabControlYT();
                 grab_url_of_video.Visible = true;
-                
+
                 if (first_run)
                 {
                     Uri url = new Uri("http://www.youtube.com");
@@ -1775,15 +1780,40 @@ namespace Form1
 
             }
 
-            else grab_url_of_video.Visible = false;
+            else
+            {
+                grab_url_of_video.Visible = false;
+
+                minimizeTabControlYT();
+
+                try
+                {
+
+                    if (System.Windows.Forms.Application.OpenForms["YoutubeWebsiteControls"] != null)
+                    {
+                        System.Windows.Forms.Application.OpenForms["YoutubeWebsiteControls"].Close();
+                    }
+
+
+
+                }
+
+                catch{
+                }
+
+                searchList_Minimize();
+
+            } 
 
             if (tabControl1.SelectedTab.Name.Equals("mediaLibTab"))
             {
-                DisplayItems(conv_video_path);
+                //DisplayItems(conv_video_path);
             }
 
             
         }
+
+       
 
         private void DisplayItems(string path)
         {
@@ -2533,36 +2563,47 @@ namespace Form1
 
             if (maximizeOrMinimizeSearchListButton.Tag.ToString() == "minimized")
             {
-                searchList.Width = 1070;
-                searchList.Height = 590;
-                tabControl1.Width = 1070;
-                tabControl1.Height = 590;
-                tabControl1.BringToFront();
-
-                searchList.Columns[2].Width = 400;
-                searchList.Columns[1].Width = 300;
-                
-                maximizeOrMinimizeSearchListButton.Tag = "maximized";
-
-                maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.max;
+                searchList_Maximize();
             }
 
             // we are resetting to defaults
             else
             {
-                searchList.Width = 564;
-                searchList.Height = 282;
-                tabControl1.Width = 583;
-                tabControl1.Height = 399;
-                maximizeOrMinimizeSearchListButton.Tag = "minimized";
+                searchList_Minimize();
 
-
-                searchList.Columns[2].Width = originalDescriptionColumnWidth;
-                searchList.Columns[1].Width = originalTitleColumnWidth;
-                
-                maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.min;
             }
 
+        }
+
+        private void searchList_Minimize()
+        {
+            searchList.Width = 564;
+            searchList.Height = 282;
+            tabControl1.Width = 583;
+            tabControl1.Height = 399;
+            maximizeOrMinimizeSearchListButton.Tag = "minimized";
+
+
+            searchList.Columns[2].Width = originalDescriptionColumnWidth;
+            searchList.Columns[1].Width = originalTitleColumnWidth;
+
+            maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.min;
+        }
+
+        private void searchList_Maximize()
+        {
+            searchList.Width = 1070;
+            searchList.Height = 590;
+            tabControl1.Width = 1070;
+            tabControl1.Height = 590;
+            tabControl1.BringToFront();
+
+            searchList.Columns[2].Width = 400;
+            searchList.Columns[1].Width = 300;
+
+            maximizeOrMinimizeSearchListButton.Tag = "maximized";
+
+            maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.max;
         }
 
       

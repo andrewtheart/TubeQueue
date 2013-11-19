@@ -41,7 +41,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.builtInYTSearchTab = new System.Windows.Forms.TabPage();
             this.maximizeOrMinimizeSearchListButton = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.numResults = new System.Windows.Forms.Label();
@@ -141,7 +141,7 @@
             this.MainTabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.builtInYTSearchTab.SuspendLayout();
             this.YouTubeWebsiteSearchTab.SuspendLayout();
             this.mediaLibTab.SuspendLayout();
             this.ToolsView.SuspendLayout();
@@ -287,7 +287,7 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.builtInYTSearchTab);
             this.tabControl1.Controls.Add(this.YouTubeWebsiteSearchTab);
             this.tabControl1.Controls.Add(this.mediaLibTab);
             this.tabControl1.Location = new System.Drawing.Point(6, 3);
@@ -298,31 +298,31 @@
             this.tabControl1.TabIndex = 30;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage2
+            // builtInYTSearchTab
             // 
-            this.tabPage2.Controls.Add(this.maximizeOrMinimizeSearchListButton);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.numResults);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.SearchTermTextbox);
-            this.tabPage2.Controls.Add(this.SearchButton);
-            this.tabPage2.Controls.Add(this.sortByViewCount);
-            this.tabPage2.Controls.Add(this.SortByLabel);
-            this.tabPage2.Controls.Add(this.sortByRelevance);
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.sortByRating);
-            this.tabPage2.Controls.Add(this.sortByDateAdded);
-            this.tabPage2.Controls.Add(this.PreviewMode);
-            this.tabPage2.Controls.Add(this.searchList);
-            this.tabPage2.Controls.Add(this.getMoreSearchResults);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(575, 373);
-            this.tabPage2.TabIndex = 0;
-            this.tabPage2.Text = "Built-in YouTube Search";
-            this.tabPage2.ToolTipText = "Built-in YouTube Search (best for batches video opeations)";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.builtInYTSearchTab.Controls.Add(this.maximizeOrMinimizeSearchListButton);
+            this.builtInYTSearchTab.Controls.Add(this.label16);
+            this.builtInYTSearchTab.Controls.Add(this.numResults);
+            this.builtInYTSearchTab.Controls.Add(this.label12);
+            this.builtInYTSearchTab.Controls.Add(this.SearchTermTextbox);
+            this.builtInYTSearchTab.Controls.Add(this.SearchButton);
+            this.builtInYTSearchTab.Controls.Add(this.sortByViewCount);
+            this.builtInYTSearchTab.Controls.Add(this.SortByLabel);
+            this.builtInYTSearchTab.Controls.Add(this.sortByRelevance);
+            this.builtInYTSearchTab.Controls.Add(this.button1);
+            this.builtInYTSearchTab.Controls.Add(this.sortByRating);
+            this.builtInYTSearchTab.Controls.Add(this.sortByDateAdded);
+            this.builtInYTSearchTab.Controls.Add(this.PreviewMode);
+            this.builtInYTSearchTab.Controls.Add(this.searchList);
+            this.builtInYTSearchTab.Controls.Add(this.getMoreSearchResults);
+            this.builtInYTSearchTab.Location = new System.Drawing.Point(4, 22);
+            this.builtInYTSearchTab.Name = "builtInYTSearchTab";
+            this.builtInYTSearchTab.Padding = new System.Windows.Forms.Padding(3);
+            this.builtInYTSearchTab.Size = new System.Drawing.Size(575, 373);
+            this.builtInYTSearchTab.TabIndex = 0;
+            this.builtInYTSearchTab.Text = "Built-in YouTube Search";
+            this.builtInYTSearchTab.ToolTipText = "Built-in YouTube Search (best for batches video opeations)";
+            this.builtInYTSearchTab.UseVisualStyleBackColor = true;
             // 
             // maximizeOrMinimizeSearchListButton
             // 
@@ -386,7 +386,7 @@
             this.SearchButton.ForeColor = System.Drawing.Color.White;
             this.SearchButton.Location = new System.Drawing.Point(329, 29);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(67, 28);
+            this.SearchButton.Size = new System.Drawing.Size(69, 28);
             this.SearchButton.TabIndex = 1;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
@@ -1351,8 +1351,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.builtInYTSearchTab.ResumeLayout(false);
+            this.builtInYTSearchTab.PerformLayout();
             this.YouTubeWebsiteSearchTab.ResumeLayout(false);
             this.mediaLibTab.ResumeLayout(false);
             this.ToolsView.ResumeLayout(false);
@@ -1398,7 +1398,7 @@
         private System.Windows.Forms.ToolStripMenuItem mul_urls_choice;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage builtInYTSearchTab;
         private System.Windows.Forms.TextBox SearchTermTextbox;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.RadioButton sortByViewCount;
