@@ -1641,15 +1641,22 @@ namespace Form1
         {
             mul_urls = new Form();
 
-            //mul_urls.Height = mul_urls.Height - 20;
-            //mul_urls.ControlBox = false;
+            mul_urls.Height = mul_urls.Height +10;
+            mul_urls.Width = mul_urls.Height + 10;
 
+            // prevent user from resizing this form
+            mul_urls.MaximumSize = new Size(mul_urls.Height + 10, mul_urls.Height + 10);
+
+            mul_urls.MinimumSize = new Size(mul_urls.Height + 10, mul_urls.Height + 10);
+
+            
             mul_urls.StartPosition = FormStartPosition.CenterParent;
             TextBox myTextbox = new TextBox();
             Label instructions = new Label();
             instructions.Text = "Add multiple URL's here, seperated by a space.";
             instructions.Width = 300;
-            myTextbox.Location = new Point(3, 30);
+            instructions.Location = new Point(12, 6);
+            myTextbox.Location = new Point(12, 30);
             myTextbox.Multiline = true;
             myTextbox.Width = 280;
             myTextbox.Height = 200;
@@ -1660,7 +1667,7 @@ namespace Form1
             add.Width = 120;
 
             mul_urls.Controls.Add(myTextbox);
-            add.Location = new Point(3, 240);
+            add.Location = new Point(12, 240);
             mul_urls.Controls.Add(add);
             mul_urls.Controls.Add(instructions);
 
