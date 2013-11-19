@@ -1,0 +1,9 @@
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\bin\Debug\TubeQueue.exe.config
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\bin\Debug\TubeQueue.exe
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\bin\Debug\TubeQueue.pdb
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\obj\x86\Debug\TubeQueue.csprojResolveAssemblyReference.cache
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\obj\x86\Debug\Form1.TubeQueue.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\obj\x86\Debug\TubeQueue.Properties.Resources.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\obj\x86\Debug\TubeQueue.csproj.GenerateResource.Cache
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\obj\x86\Debug\TubeQueue.exe
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\WindowsFormsApplication9\WindowsFormsApplication9\obj\x86\Debug\TubeQueue.pdb

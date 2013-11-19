@@ -1,0 +1,7 @@
+********************
+Must read section!!!
+******************** 
+
+(1) You need the .NET framework 3.5 installed to run this program. It may or may not prompt you to install it. If not, download it from this link -- 
+
+http://www.microsoft.com/downloads/details.aspx?familyid=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en

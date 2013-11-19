@@ -1,0 +1,3 @@
+MP3,ffmpeg -i %v %o.mp3
+MPEG [Windows],ffmpeg -i %v %o.mpg
+MOV [Apple/iTunes],ffmpeg -i %v %o.movAVI-New,ffmpeg -i %v -vcodec msmpeg4 -vtag MP43 -acodec mp3 %o.avi

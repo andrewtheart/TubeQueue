@@ -1,0 +1,7 @@
+01/08/2010
+***********
+
+* Batch YouTube search function skips over videos in search that are private / removed / etc (major bug fix).
+* Batch YouTube search function allows you to search a user's subscriptions, playlists, and favorites. You can also find all videos uploaded by a particular user.
+* Program compiled for 32-bit / x86 platform. Flash player in internal YouTube web browser should work fine now (major bug fix)
+* Vevo videos still do not download, sorry!
