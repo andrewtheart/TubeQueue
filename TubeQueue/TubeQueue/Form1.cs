@@ -19,6 +19,7 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using HSToolKit.MessagesWin32;
 using System.Web;
+using TubeQueue;
 
 
 
@@ -28,11 +29,12 @@ namespace Form1
     {
         private bool keyHandled;
         bool first_run = true;
+        
 
         // UPDATE ON RELEASE!!!!
 
         String version_number = "1.65";
-        String release_date = "11/18/2013";
+        String release_date = "11/19/2013";
 
         [DllImport("user32.dll")]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,
@@ -104,6 +106,8 @@ namespace Form1
         System.IntPtr appWin = IntPtr.Zero;
         System.Diagnostics.Process progressWin = null;
 
+        int originalDescriptionColumnWidth = 0;
+        int originalTitleColumnWidth = 0;
 
         public TubeQueue()
         {
@@ -256,7 +260,7 @@ namespace Form1
                     {
                         make_yt_default.Checked = true;
                         tabControl1.Focus();
-                        tabControl1.SelectedTab = tabPage6;
+                        tabControl1.SelectedTab = YouTubeWebsiteSearchTab;
                         grab_url_of_video.Show();
                     }
 
@@ -675,6 +679,11 @@ namespace Form1
 
             MainTabs.TabPages[0].Text = "Download and Convert";
             MainTabs.TabPages[1].Text = "Settings";
+
+            originalTitleColumnWidth = searchList.Columns[1].Width;
+            originalDescriptionColumnWidth = searchList.Columns[2].Width;
+
+            maximizeOrMinimizeSearchListButton.Tag = "minimized";
         }
 
 
@@ -1326,6 +1335,21 @@ namespace Form1
 
         }
 
+        public void minimizeTabControlYT()
+        {
+          
+            tabControl1.Width = 583;
+            tabControl1.Height = 399;
+            tabControl1.SendToBack();
+            youtube_browser.Width = 569;
+             youtube_browser.Height = 350;
+
+             grab_url_of_video.Visible = true;
+             maximizeYTbutton.Visible = true;
+
+        }
+
+
         private void button1_Click_1(object sender, EventArgs e)
         {
 
@@ -1730,12 +1754,59 @@ namespace Form1
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (tabControl1.SelectedTab.Name.Equals("tabPage6"))
+            if (tabControl1.SelectedTab.Name.Equals("YouTubeWebsiteSearchTab"))
             {
                 grab_url_of_video.Visible = true;
+                
+                if (first_run)
+                {
+                    Uri url = new Uri("http://www.youtube.com");
+                    youtube_browser.Url = url;
+                }
+
+                first_run = false;
+
             }
 
             else grab_url_of_video.Visible = false;
+
+            if (tabControl1.SelectedTab.Name.Equals("mediaLibTab"))
+            {
+                DisplayItems(conv_video_path);
+            }
+
+            
+        }
+
+        private void DisplayItems(string path)
+        {
+            System.IO.DirectoryInfo di = new DirectoryInfo(path);
+
+            foreach (System.IO.FileInfo file in di.GetFiles())
+            {
+                string key = file.Extension;
+
+              
+
+                if (!this.mediaLibImageList.Images.Keys.Contains(key))
+                {
+                    this.mediaLibImageList.Images.Add(key, System.Drawing.Icon.ExtractAssociatedIcon(file.FullName));
+                }
+
+                int index = this.mediaLibImageList.Images.Keys.IndexOf(key);
+
+
+                ListViewItem item = new ListViewItem();
+
+                item.Text = file.Name;
+
+                item.ImageIndex = index;
+
+                item.Tag = file;
+
+
+                this.lvMediaLibrary.Items.Add(item);
+            }
         }
 
         private void experTabView_prev_CheckedChanged(object sender, EventArgs e)
@@ -2284,18 +2355,16 @@ namespace Form1
 
         }
 
-        private void tabPage6_Enter(object sender, EventArgs e)
-        {
-            if (first_run)
-            {
-                Uri url = new Uri("http://www.youtube.com");
-                youtube_browser.Url = url;
-            }
 
-            first_run = false;
-        }
 
         private void grab_url_of_video_Click(object sender, EventArgs e)
+        {
+
+            getURLFromWebview();
+        }
+
+
+        public void getURLFromWebview()
         {
 
             BringWindowToTop(appWin);
@@ -2305,11 +2374,14 @@ namespace Form1
 
             string url = convertYouTubeURL(youtube_browser.Url.ToString());
             ShowWindow(appWin, (int)Win32.SW_HIDE);
-            //foo
+
             queue.Items.Add(get_video_title_from_url(url));
             queue.Items[queue_sync_iteration].SubItems.Add(url);
             queue_sync_iteration++;
         }
+
+
+       
 
         private void yt_browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -2430,6 +2502,63 @@ namespace Form1
         {
             System.Diagnostics.Process.Start(conv_video_path);
         }
+
+        private void maximizeYTbutton_Click(object sender, EventArgs e)
+        {
+            grab_url_of_video.Visible = false;
+            maximizeYTbutton.Visible = false;
+
+        
+            tabControl1.Width = 1200;
+            tabControl1.Height = 590;
+            youtube_browser.Width = 1070;
+            youtube_browser.Height = 590;
+            tabControl1.BringToFront();
+
+            YoutubeWebsiteControls frm = new YoutubeWebsiteControls();
+            frm.Show();
+            frm.TopMost = true;
+        }
+
+        private void maximizeOrMinimizeSearchListButton_Click(object sender, EventArgs e)
+        {
+            // currently minimized by we want to maximize it 
+
+            if (maximizeOrMinimizeSearchListButton.Tag.ToString() == "minimized")
+            {
+                searchList.Width = 1070;
+                searchList.Height = 590;
+                tabControl1.Width = 1070;
+                tabControl1.Height = 590;
+                tabControl1.BringToFront();
+
+                searchList.Columns[2].Width = 400;
+                searchList.Columns[1].Width = 300;
+                
+                maximizeOrMinimizeSearchListButton.Tag = "maximized";
+
+                maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.max;
+            }
+
+            // we are resetting to defaults
+            else
+            {
+                searchList.Width = 564;
+                searchList.Height = 282;
+                tabControl1.Width = 583;
+                tabControl1.Height = 399;
+                maximizeOrMinimizeSearchListButton.Tag = "minimized";
+
+
+                searchList.Columns[2].Width = originalDescriptionColumnWidth;
+                searchList.Columns[1].Width = originalTitleColumnWidth;
+                
+                maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.min;
+            }
+
+        }
+
+      
     }
 }
 

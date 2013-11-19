@@ -39,11 +39,10 @@
             this.ClearProcessingQueue = new System.Windows.Forms.Button();
             this.DownloadAndProcessButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.lvDownloads = new EXControls.EXListView();
             this.button2 = new System.Windows.Forms.Button();
-            this.grab_url_of_video = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.maximizeOrMinimizeSearchListButton = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.numResults = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -58,10 +57,12 @@
             this.PreviewMode = new System.Windows.Forms.CheckBox();
             this.searchList = new System.Windows.Forms.ListView();
             this.getMoreSearchResults = new System.Windows.Forms.Button();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.YouTubeWebsiteSearchTab = new System.Windows.Forms.TabPage();
+            this.maximizeYTbutton = new System.Windows.Forms.Button();
             this.youtube_browser = new System.Windows.Forms.WebBrowser();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.label17 = new System.Windows.Forms.Label();
+            this.grab_url_of_video = new System.Windows.Forms.Button();
+            this.mediaLibTab = new System.Windows.Forms.TabPage();
+            this.lvMediaLibrary = new System.Windows.Forms.ListView();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ProcessLabel = new System.Windows.Forms.Label();
@@ -117,15 +118,6 @@
             this.experTabView_prev = new System.Windows.Forms.CheckBox();
             this.AutoResizeSearch = new System.Windows.Forms.CheckBox();
             this.AppendSearch = new System.Windows.Forms.CheckBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.qUickHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bugsIssuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.processingQueueStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeProcessingQueueItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savedFFMPEGTweakedSettings = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -143,19 +135,21 @@
             this.queue_menu_options = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rename_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
             this.delete_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediaLibImageList = new System.Windows.Forms.ImageList(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lvDownloads = new EXControls.EXListView();
             this.MainTabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
+            this.YouTubeWebsiteSearchTab.SuspendLayout();
+            this.mediaLibTab.SuspendLayout();
             this.ToolsView.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.InterfaceSettings.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.processingQueueStrip.SuspendLayout();
             this.savedFFMPEGTweakedSettings.SuspendLayout();
             this.addToQueueStrip.SuspendLayout();
@@ -175,10 +169,10 @@
             this.MainTabs.Controls.Add(this.tabPage3);
             this.MainTabs.Controls.Add(this.tabPage4);
             this.MainTabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainTabs.Location = new System.Drawing.Point(-5, 27);
+            this.MainTabs.Location = new System.Drawing.Point(2, 2);
             this.MainTabs.Name = "MainTabs";
             this.MainTabs.SelectedIndex = 0;
-            this.MainTabs.Size = new System.Drawing.Size(1174, 740);
+            this.MainTabs.Size = new System.Drawing.Size(1091, 620);
             this.MainTabs.TabIndex = 6;
             // 
             // tabPage3
@@ -192,7 +186,6 @@
             this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.lvDownloads);
             this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.grab_url_of_video);
             this.tabPage3.Controls.Add(this.tabControl1);
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.label1);
@@ -205,14 +198,14 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1166, 714);
+            this.tabPage3.Size = new System.Drawing.Size(1083, 594);
             this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "5";
+            this.tabPage3.Text = "Download/Convert";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(848, 408);
+            this.button7.Location = new System.Drawing.Point(900, 408);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(174, 24);
             this.button7.TabIndex = 34;
@@ -222,7 +215,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(735, 408);
+            this.button6.Location = new System.Drawing.Point(784, 408);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(110, 24);
             this.button6.TabIndex = 33;
@@ -234,13 +227,13 @@
             // 
             this.processingQueue.Location = new System.Drawing.Point(13, 468);
             this.processingQueue.Name = "processingQueue";
-            this.processingQueue.Size = new System.Drawing.Size(450, 119);
+            this.processingQueue.Size = new System.Drawing.Size(491, 119);
             this.processingQueue.TabIndex = 0;
             this.processingQueue.MouseUp += new System.Windows.Forms.MouseEventHandler(this.processingQueue_MouseUp);
             // 
             // deleteSelectedNode
             // 
-            this.deleteSelectedNode.Location = new System.Drawing.Point(171, 440);
+            this.deleteSelectedNode.Location = new System.Drawing.Point(216, 439);
             this.deleteSelectedNode.Name = "deleteSelectedNode";
             this.deleteSelectedNode.Size = new System.Drawing.Size(94, 24);
             this.deleteSelectedNode.TabIndex = 13;
@@ -250,7 +243,7 @@
             // 
             // ClearProcessingQueue
             // 
-            this.ClearProcessingQueue.Location = new System.Drawing.Point(271, 441);
+            this.ClearProcessingQueue.Location = new System.Drawing.Point(316, 440);
             this.ClearProcessingQueue.Name = "ClearProcessingQueue";
             this.ClearProcessingQueue.Size = new System.Drawing.Size(53, 23);
             this.ClearProcessingQueue.TabIndex = 12;
@@ -263,9 +256,9 @@
             this.DownloadAndProcessButton.BackColor = System.Drawing.Color.Red;
             this.DownloadAndProcessButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadAndProcessButton.ForeColor = System.Drawing.Color.White;
-            this.DownloadAndProcessButton.Location = new System.Drawing.Point(330, 437);
+            this.DownloadAndProcessButton.Location = new System.Drawing.Point(375, 435);
             this.DownloadAndProcessButton.Name = "DownloadAndProcessButton";
-            this.DownloadAndProcessButton.Size = new System.Drawing.Size(133, 30);
+            this.DownloadAndProcessButton.Size = new System.Drawing.Size(129, 29);
             this.DownloadAndProcessButton.TabIndex = 11;
             this.DownloadAndProcessButton.Text = "Download/Convert";
             this.DownloadAndProcessButton.UseVisualStyleBackColor = false;
@@ -274,31 +267,17 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Blue;
-            this.label13.Location = new System.Drawing.Point(475, 408);
+            this.label13.Location = new System.Drawing.Point(506, 410);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(175, 24);
+            this.label13.Size = new System.Drawing.Size(188, 22);
             this.label13.TabIndex = 32;
             this.label13.Text = "Download Progress";
             // 
-            // lvDownloads
-            // 
-            this.lvDownloads.ControlPadding = 4;
-            this.lvDownloads.FullRowSelect = true;
-            this.lvDownloads.Location = new System.Drawing.Point(479, 438);
-            this.lvDownloads.MaximumSize = new System.Drawing.Size(655, 149);
-            this.lvDownloads.MinimumSize = new System.Drawing.Size(655, 149);
-            this.lvDownloads.Name = "lvDownloads";
-            this.lvDownloads.OwnerDraw = true;
-            this.lvDownloads.Size = new System.Drawing.Size(655, 149);
-            this.lvDownloads.TabIndex = 2;
-            this.lvDownloads.UseCompatibleStateImageBehavior = false;
-            this.lvDownloads.View = System.Windows.Forms.View.Tile;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(656, 408);
+            this.button2.Location = new System.Drawing.Point(708, 408);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(70, 24);
             this.button2.TabIndex = 14;
@@ -306,33 +285,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // grab_url_of_video
-            // 
-            this.grab_url_of_video.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grab_url_of_video.ForeColor = System.Drawing.Color.Red;
-            this.grab_url_of_video.Location = new System.Drawing.Point(345, 0);
-            this.grab_url_of_video.Name = "grab_url_of_video";
-            this.grab_url_of_video.Size = new System.Drawing.Size(141, 23);
-            this.grab_url_of_video.TabIndex = 31;
-            this.grab_url_of_video.Text = "Add Video to Queue";
-            this.grab_url_of_video.UseVisualStyleBackColor = true;
-            this.grab_url_of_video.Visible = false;
-            this.grab_url_of_video.Click += new System.EventHandler(this.grab_url_of_video_Click);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Location = new System.Drawing.Point(0, 3);
+            this.tabControl1.Controls.Add(this.YouTubeWebsiteSearchTab);
+            this.tabControl1.Controls.Add(this.mediaLibTab);
+            this.tabControl1.Location = new System.Drawing.Point(6, 3);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(630, 399);
+            this.tabControl1.Size = new System.Drawing.Size(583, 399);
             this.tabControl1.TabIndex = 30;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.maximizeOrMinimizeSearchListButton);
             this.tabPage2.Controls.Add(this.label16);
             this.tabPage2.Controls.Add(this.numResults);
             this.tabPage2.Controls.Add(this.label12);
@@ -350,18 +318,30 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(622, 373);
+            this.tabPage2.Size = new System.Drawing.Size(575, 373);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Built-in YouTube Search";
             this.tabPage2.ToolTipText = "Built-in YouTube Search (best for batches video opeations)";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // maximizeOrMinimizeSearchListButton
+            // 
+            this.maximizeOrMinimizeSearchListButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maximizeOrMinimizeSearchListButton.ForeColor = System.Drawing.Color.Blue;
+            this.maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.max;
+            this.maximizeOrMinimizeSearchListButton.Location = new System.Drawing.Point(457, 61);
+            this.maximizeOrMinimizeSearchListButton.Name = "maximizeOrMinimizeSearchListButton";
+            this.maximizeOrMinimizeSearchListButton.Size = new System.Drawing.Size(37, 21);
+            this.maximizeOrMinimizeSearchListButton.TabIndex = 32;
+            this.maximizeOrMinimizeSearchListButton.UseVisualStyleBackColor = true;
+            this.maximizeOrMinimizeSearchListButton.Click += new System.EventHandler(this.maximizeOrMinimizeSearchListButton_Click);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Blue;
-            this.label16.Location = new System.Drawing.Point(151, 11);
+            this.label16.Location = new System.Drawing.Point(164, 11);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(159, 13);
             this.label16.TabIndex = 28;
@@ -372,7 +352,7 @@
             this.numResults.AutoSize = true;
             this.numResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numResults.ForeColor = System.Drawing.Color.Red;
-            this.numResults.Location = new System.Drawing.Point(497, 33);
+            this.numResults.Location = new System.Drawing.Point(485, 33);
             this.numResults.Name = "numResults";
             this.numResults.Size = new System.Drawing.Size(0, 13);
             this.numResults.TabIndex = 14;
@@ -380,11 +360,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Blue;
             this.label12.Location = new System.Drawing.Point(3, 3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(154, 24);
+            this.label12.Size = new System.Drawing.Size(160, 22);
             this.label12.TabIndex = 27;
             this.label12.Text = "YouTube Search";
             // 
@@ -393,7 +373,7 @@
             this.SearchTermTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTermTextbox.Location = new System.Drawing.Point(6, 30);
             this.SearchTermTextbox.Name = "SearchTermTextbox";
-            this.SearchTermTextbox.Size = new System.Drawing.Size(403, 26);
+            this.SearchTermTextbox.Size = new System.Drawing.Size(317, 26);
             this.SearchTermTextbox.TabIndex = 0;
             this.SearchTermTextbox.TextChanged += new System.EventHandler(this.SearchTermTextbox_TextChanged);
             this.SearchTermTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTermTextbox_KeyDown);
@@ -404,7 +384,7 @@
             this.SearchButton.BackColor = System.Drawing.Color.Red;
             this.SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchButton.ForeColor = System.Drawing.Color.White;
-            this.SearchButton.Location = new System.Drawing.Point(415, 28);
+            this.SearchButton.Location = new System.Drawing.Point(329, 29);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(67, 28);
             this.SearchButton.TabIndex = 1;
@@ -450,11 +430,11 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(526, 57);
+            this.button1.Location = new System.Drawing.Point(500, 58);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 26);
+            this.button1.Size = new System.Drawing.Size(31, 26);
             this.button1.TabIndex = 26;
-            this.button1.Text = "< 25";
+            this.button1.Text = "<";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -485,7 +465,7 @@
             // PreviewMode
             // 
             this.PreviewMode.AutoSize = true;
-            this.PreviewMode.Location = new System.Drawing.Point(409, 5);
+            this.PreviewMode.Location = new System.Drawing.Point(329, 7);
             this.PreviewMode.Name = "PreviewMode";
             this.PreviewMode.Size = new System.Drawing.Size(213, 17);
             this.PreviewMode.TabIndex = 7;
@@ -498,7 +478,7 @@
             this.searchList.LargeImageList = this.iconList_search;
             this.searchList.Location = new System.Drawing.Point(3, 86);
             this.searchList.Name = "searchList";
-            this.searchList.Size = new System.Drawing.Size(613, 282);
+            this.searchList.Size = new System.Drawing.Size(564, 282);
             this.searchList.SmallImageList = this.iconList_search;
             this.searchList.TabIndex = 2;
             this.searchList.UseCompatibleStateImageBehavior = false;
@@ -514,56 +494,81 @@
             // 
             this.getMoreSearchResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.getMoreSearchResults.ForeColor = System.Drawing.Color.Blue;
-            this.getMoreSearchResults.Location = new System.Drawing.Point(576, 57);
+            this.getMoreSearchResults.Location = new System.Drawing.Point(537, 58);
             this.getMoreSearchResults.Name = "getMoreSearchResults";
-            this.getMoreSearchResults.Size = new System.Drawing.Size(40, 26);
+            this.getMoreSearchResults.Size = new System.Drawing.Size(30, 26);
             this.getMoreSearchResults.TabIndex = 13;
-            this.getMoreSearchResults.Text = "25 >";
+            this.getMoreSearchResults.Text = ">";
             this.getMoreSearchResults.UseVisualStyleBackColor = true;
             this.getMoreSearchResults.Click += new System.EventHandler(this.page25More);
             // 
-            // tabPage6
+            // YouTubeWebsiteSearchTab
             // 
-            this.tabPage6.Controls.Add(this.youtube_browser);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(622, 373);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "YouTube Website Search";
-            this.tabPage6.ToolTipText = "YouTube Website Search (for single videos)";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            this.YouTubeWebsiteSearchTab.Controls.Add(this.maximizeYTbutton);
+            this.YouTubeWebsiteSearchTab.Controls.Add(this.youtube_browser);
+            this.YouTubeWebsiteSearchTab.Controls.Add(this.grab_url_of_video);
+            this.YouTubeWebsiteSearchTab.Location = new System.Drawing.Point(4, 22);
+            this.YouTubeWebsiteSearchTab.Name = "YouTubeWebsiteSearchTab";
+            this.YouTubeWebsiteSearchTab.Padding = new System.Windows.Forms.Padding(3);
+            this.YouTubeWebsiteSearchTab.Size = new System.Drawing.Size(575, 373);
+            this.YouTubeWebsiteSearchTab.TabIndex = 1;
+            this.YouTubeWebsiteSearchTab.Text = "YouTube Website Search";
+            this.YouTubeWebsiteSearchTab.ToolTipText = "YouTube Website Search (for single videos)";
+            this.YouTubeWebsiteSearchTab.UseVisualStyleBackColor = true;
+            // 
+            // maximizeYTbutton
+            // 
+            this.maximizeYTbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maximizeYTbutton.ForeColor = System.Drawing.Color.Blue;
+            this.maximizeYTbutton.Image = global::TubeQueue.Properties.Resources.max;
+            this.maximizeYTbutton.Location = new System.Drawing.Point(538, 0);
+            this.maximizeYTbutton.Name = "maximizeYTbutton";
+            this.maximizeYTbutton.Size = new System.Drawing.Size(37, 21);
+            this.maximizeYTbutton.TabIndex = 31;
+            this.maximizeYTbutton.UseVisualStyleBackColor = true;
+            this.maximizeYTbutton.Click += new System.EventHandler(this.maximizeYTbutton_Click);
             // 
             // youtube_browser
             // 
-            this.youtube_browser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.youtube_browser.Location = new System.Drawing.Point(3, 3);
+            this.youtube_browser.Location = new System.Drawing.Point(3, 22);
             this.youtube_browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.youtube_browser.Name = "youtube_browser";
-            this.youtube_browser.Size = new System.Drawing.Size(616, 367);
+            this.youtube_browser.Size = new System.Drawing.Size(569, 350);
             this.youtube_browser.TabIndex = 0;
-            this.youtube_browser.Url = new System.Uri("http://www.youtube.com", System.UriKind.Absolute);
+            this.youtube_browser.Url = new System.Uri("", System.UriKind.Relative);
             // 
-            // tabPage7
+            // grab_url_of_video
             // 
-            this.tabPage7.Controls.Add(this.label17);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(622, 373);
-            this.tabPage7.TabIndex = 2;
-            this.tabPage7.Text = "Media Library";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.grab_url_of_video.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grab_url_of_video.ForeColor = System.Drawing.Color.Red;
+            this.grab_url_of_video.Location = new System.Drawing.Point(397, 0);
+            this.grab_url_of_video.Name = "grab_url_of_video";
+            this.grab_url_of_video.Size = new System.Drawing.Size(139, 21);
+            this.grab_url_of_video.TabIndex = 31;
+            this.grab_url_of_video.Text = "Add Video to Queue";
+            this.grab_url_of_video.UseVisualStyleBackColor = true;
+            this.grab_url_of_video.Visible = false;
+            this.grab_url_of_video.Click += new System.EventHandler(this.grab_url_of_video_Click);
             // 
-            // label17
+            // mediaLibTab
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(248, 187);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(106, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Feature coming soon";
+            this.mediaLibTab.Controls.Add(this.lvMediaLibrary);
+            this.mediaLibTab.Location = new System.Drawing.Point(4, 22);
+            this.mediaLibTab.Name = "mediaLibTab";
+            this.mediaLibTab.Padding = new System.Windows.Forms.Padding(3);
+            this.mediaLibTab.Size = new System.Drawing.Size(575, 373);
+            this.mediaLibTab.TabIndex = 2;
+            this.mediaLibTab.Text = "Media Library";
+            this.mediaLibTab.UseVisualStyleBackColor = true;
+            // 
+            // lvMediaLibrary
+            // 
+            this.lvMediaLibrary.Location = new System.Drawing.Point(6, 3);
+            this.lvMediaLibrary.Name = "lvMediaLibrary";
+            this.lvMediaLibrary.Size = new System.Drawing.Size(566, 367);
+            this.lvMediaLibrary.TabIndex = 0;
+            this.lvMediaLibrary.UseCompatibleStateImageBehavior = false;
+            this.lvMediaLibrary.View = System.Windows.Forms.View.Tile;
             // 
             // button3
             // 
@@ -590,11 +595,11 @@
             // ProcessLabel
             // 
             this.ProcessLabel.AutoSize = true;
-            this.ProcessLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProcessLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProcessLabel.ForeColor = System.Drawing.Color.Blue;
             this.ProcessLabel.Location = new System.Drawing.Point(7, 438);
             this.ProcessLabel.Name = "ProcessLabel";
-            this.ProcessLabel.Size = new System.Drawing.Size(168, 24);
+            this.ProcessLabel.Size = new System.Drawing.Size(176, 22);
             this.ProcessLabel.TabIndex = 27;
             this.ProcessLabel.Text = "Processing Queue";
             // 
@@ -624,11 +629,11 @@
             // Process
             // 
             this.Process.AutoSize = true;
-            this.Process.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Process.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Process.ForeColor = System.Drawing.Color.Blue;
-            this.Process.Location = new System.Drawing.Point(628, 3);
+            this.Process.Location = new System.Drawing.Point(595, 3);
             this.Process.Name = "Process";
-            this.Process.Size = new System.Drawing.Size(177, 24);
+            this.Process.Size = new System.Drawing.Size(193, 22);
             this.Process.TabIndex = 10;
             this.Process.Text = "Conversion Settings";
             // 
@@ -636,10 +641,10 @@
             // 
             this.ToolsView.Controls.Add(this.tabPage1);
             this.ToolsView.Controls.Add(this.tabPage5);
-            this.ToolsView.Location = new System.Drawing.Point(632, 28);
+            this.ToolsView.Location = new System.Drawing.Point(595, 25);
             this.ToolsView.Name = "ToolsView";
             this.ToolsView.SelectedIndex = 0;
-            this.ToolsView.Size = new System.Drawing.Size(506, 374);
+            this.ToolsView.Size = new System.Drawing.Size(482, 374);
             this.ToolsView.TabIndex = 4;
             this.ToolsView.Selected += new System.Windows.Forms.TabControlEventHandler(this.ToolsView_Selected);
             // 
@@ -671,7 +676,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(498, 348);
+            this.tabPage1.Size = new System.Drawing.Size(474, 348);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Video Collection Queue";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -699,9 +704,9 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(152, 320);
+            this.clearButton.Location = new System.Drawing.Point(154, 10);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(57, 23);
+            this.clearButton.Size = new System.Drawing.Size(53, 23);
             this.clearButton.TabIndex = 1;
             this.clearButton.Text = "Clear All";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -709,9 +714,10 @@
             // 
             // SaveTweakedConversion
             // 
-            this.SaveTweakedConversion.Location = new System.Drawing.Point(453, 272);
+            this.SaveTweakedConversion.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveTweakedConversion.Location = new System.Drawing.Point(435, 263);
             this.SaveTweakedConversion.Name = "SaveTweakedConversion";
-            this.SaveTweakedConversion.Size = new System.Drawing.Size(42, 23);
+            this.SaveTweakedConversion.Size = new System.Drawing.Size(36, 23);
             this.SaveTweakedConversion.TabIndex = 54;
             this.SaveTweakedConversion.Text = "Save";
             this.SaveTweakedConversion.UseVisualStyleBackColor = true;
@@ -722,9 +728,9 @@
             this.DownloadButton.BackColor = System.Drawing.Color.Red;
             this.DownloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadButton.ForeColor = System.Drawing.Color.White;
-            this.DownloadButton.Location = new System.Drawing.Point(6, 311);
+            this.DownloadButton.Location = new System.Drawing.Point(19, 307);
             this.DownloadButton.Name = "DownloadButton";
-            this.DownloadButton.Size = new System.Drawing.Size(128, 35);
+            this.DownloadButton.Size = new System.Drawing.Size(173, 35);
             this.DownloadButton.TabIndex = 3;
             this.DownloadButton.Text = "Add to Processing Queue";
             this.DownloadButton.UseVisualStyleBackColor = false;
@@ -734,7 +740,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(235, 311);
+            this.label10.Location = new System.Drawing.Point(226, 305);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(154, 13);
             this.label10.TabIndex = 53;
@@ -841,7 +847,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(233, 253);
+            this.label6.Location = new System.Drawing.Point(215, 244);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(231, 16);
             this.label6.TabIndex = 43;
@@ -851,7 +857,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(230, 327);
+            this.label4.Location = new System.Drawing.Point(216, 325);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(213, 13);
             this.label4.TabIndex = 42;
@@ -861,7 +867,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(230, 295);
+            this.label2.Location = new System.Drawing.Point(219, 292);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(210, 13);
             this.label2.TabIndex = 41;
@@ -870,7 +876,7 @@
             // conversionSettings
             // 
             this.conversionSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.conversionSettings.Location = new System.Drawing.Point(236, 272);
+            this.conversionSettings.Location = new System.Drawing.Point(218, 263);
             this.conversionSettings.Name = "conversionSettings";
             this.conversionSettings.Size = new System.Drawing.Size(214, 20);
             this.conversionSettings.TabIndex = 40;
@@ -925,7 +931,7 @@
             this.queue.Location = new System.Drawing.Point(6, 8);
             this.queue.Name = "queue";
             this.queue.ShowItemToolTips = true;
-            this.queue.Size = new System.Drawing.Size(215, 297);
+            this.queue.Size = new System.Drawing.Size(203, 297);
             this.queue.TabIndex = 0;
             this.queue.UseCompatibleStateImageBehavior = false;
             this.queue.View = System.Windows.Forms.View.Details;
@@ -954,7 +960,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(498, 348);
+            this.tabPage5.Size = new System.Drawing.Size(474, 348);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Preview";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -965,7 +971,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(492, 342);
+            this.webBrowser1.Size = new System.Drawing.Size(468, 342);
             this.webBrowser1.TabIndex = 0;
             // 
             // NoVideoSelectedYet
@@ -1007,9 +1013,9 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1166, 714);
+            this.tabPage4.Size = new System.Drawing.Size(1083, 594);
             this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.Text = "Settings";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -1190,80 +1196,6 @@
     "st)";
             this.AppendSearch.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1143, 24);
-            this.menuStrip1.TabIndex = 7;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click_1);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem,
-            this.tutorialsToolStripMenuItem,
-            this.qUickHelpToolStripMenuItem,
-            this.bugsIssuesToolStripMenuItem,
-            this.toolStripMenuItem1});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // tutorialsToolStripMenuItem
-            // 
-            this.tutorialsToolStripMenuItem.Name = "tutorialsToolStripMenuItem";
-            this.tutorialsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.tutorialsToolStripMenuItem.Text = "Video Tutorial";
-            this.tutorialsToolStripMenuItem.Click += new System.EventHandler(this.tutorialsToolStripMenuItem_Click);
-            // 
-            // qUickHelpToolStripMenuItem
-            // 
-            this.qUickHelpToolStripMenuItem.Name = "qUickHelpToolStripMenuItem";
-            this.qUickHelpToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.qUickHelpToolStripMenuItem.Text = "Quick Help";
-            this.qUickHelpToolStripMenuItem.Click += new System.EventHandler(this.qUickHelpToolStripMenuItem_Click);
-            // 
-            // bugsIssuesToolStripMenuItem
-            // 
-            this.bugsIssuesToolStripMenuItem.Name = "bugsIssuesToolStripMenuItem";
-            this.bugsIssuesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.bugsIssuesToolStripMenuItem.Text = "Known Bugs/Issues";
-            this.bugsIssuesToolStripMenuItem.Click += new System.EventHandler(this.bugsIssuesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
-            this.toolStripMenuItem1.Text = "Visit Website";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
             // processingQueueStrip
             // 
             this.processingQueueStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1381,14 +1313,34 @@
             this.delete_queue_menu_options.ToolTipText = "Delete the selected video(s)";
             this.delete_queue_menu_options.Click += new System.EventHandler(this.delete_queue_menu_options_Click);
             // 
+            // mediaLibImageList
+            // 
+            this.mediaLibImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.mediaLibImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.mediaLibImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // lvDownloads
+            // 
+            this.lvDownloads.ControlPadding = 4;
+            this.lvDownloads.FullRowSelect = true;
+            this.lvDownloads.Location = new System.Drawing.Point(510, 441);
+            this.lvDownloads.MaximumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.MinimumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.Name = "lvDownloads";
+            this.lvDownloads.OwnerDraw = true;
+            this.lvDownloads.Size = new System.Drawing.Size(564, 149);
+            this.lvDownloads.TabIndex = 2;
+            this.lvDownloads.UseCompatibleStateImageBehavior = false;
+            this.lvDownloads.View = System.Windows.Forms.View.Tile;
+            // 
             // TubeQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1143, 644);
-            this.Controls.Add(this.menuStrip1);
+            this.ClientSize = new System.Drawing.Size(1093, 622);
             this.Controls.Add(this.MainTabs);
-            this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(1109, 661);
+            this.MinimumSize = new System.Drawing.Size(1109, 661);
             this.Name = "TubeQueue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "TubeQueue by Andrew Stein, build <buildno> - <INSERT DATE HERE>";
@@ -1401,9 +1353,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
+            this.YouTubeWebsiteSearchTab.ResumeLayout(false);
+            this.mediaLibTab.ResumeLayout(false);
             this.ToolsView.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1414,8 +1365,6 @@
             this.groupBox1.PerformLayout();
             this.InterfaceSettings.ResumeLayout(false);
             this.InterfaceSettings.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.processingQueueStrip.ResumeLayout(false);
             this.savedFFMPEGTweakedSettings.ResumeLayout(false);
             this.savedFFMPEGTweakedSettings.PerformLayout();
@@ -1425,7 +1374,6 @@
             this.addsingleURL.PerformLayout();
             this.queue_menu_options.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1435,12 +1383,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox InterfaceSettings;
         private System.Windows.Forms.CheckBox AppendSearch;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tutorialsToolStripMenuItem;
         private System.Windows.Forms.CheckBox AutoResizeSearch;
         private System.Windows.Forms.ImageList iconList_search;
         private System.Windows.Forms.ContextMenuStrip processingQueueStrip;
@@ -1448,9 +1390,7 @@
         private System.Windows.Forms.ContextMenuStrip savedFFMPEGTweakedSettings;
         private System.Windows.Forms.ToolStripTextBox ffmpeg_settings_textbox_save;
         private System.Windows.Forms.Button SaveSettingsButton;
-        private System.Windows.Forms.ToolStripMenuItem qUickHelpToolStripMenuItem;
         private System.Windows.Forms.CheckBox experTabView_prev;
-        private System.Windows.Forms.ToolStripMenuItem bugsIssuesToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip addToQueueStrip;
         private System.Windows.Forms.ToolStripMenuItem addToQueueStripItem;
         private System.Windows.Forms.ContextMenuStrip number_of_urls;
@@ -1470,7 +1410,7 @@
         private System.Windows.Forms.CheckBox PreviewMode;
         private System.Windows.Forms.ListView searchList;
         private System.Windows.Forms.Button getMoreSearchResults;
-        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage YouTubeWebsiteSearchTab;
         private System.Windows.Forms.WebBrowser youtube_browser;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
@@ -1521,7 +1461,6 @@
         private System.Windows.Forms.ContextMenuStrip addsingleURL;
         private System.Windows.Forms.ToolStripTextBox single_URL_add;
         private System.Windows.Forms.Label label13;
-        private EXControls.EXListView lvDownloads;
         private System.Windows.Forms.OpenFileDialog openLocalFLVFile;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label14;
@@ -1536,15 +1475,19 @@
         private System.Windows.Forms.TextBox temp_dir_textbox;
         private System.Windows.Forms.CheckBox prompt_for_vid_conv;
         private System.Windows.Forms.CheckBox make_yt_default;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ContextMenuStrip queue_menu_options;
         private System.Windows.Forms.ToolStripMenuItem rename_queue_menu_options;
         private System.Windows.Forms.ToolStripMenuItem delete_queue_menu_options;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TabPage mediaLibTab;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
+        internal EXControls.EXListView lvDownloads;
+        private System.Windows.Forms.ListView lvMediaLibrary;
+        private System.Windows.Forms.ImageList mediaLibImageList;
+        private System.Windows.Forms.Button maximizeYTbutton;
+        private System.Windows.Forms.Button maximizeOrMinimizeSearchListButton;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

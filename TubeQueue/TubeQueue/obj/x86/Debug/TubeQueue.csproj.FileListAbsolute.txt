@@ -16,3 +16,4 @@ C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\Tub
 C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\Form1.TubeQueue.resources
 C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.Properties.Resources.resources
 C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.csproj.GenerateResource.Cache
+C:\Users\Andrew\Documents\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.YoutubeWebsiteControls.resources
