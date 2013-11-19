@@ -707,11 +707,11 @@ namespace Form1
 
             preview = new Form();
 
-            preview.Size = new Size(630, 600);
+            preview.Size = new Size(730, 600);
 
 
             tabs = new TabControl();
-            tabs.Size = new Size(630, 600);
+            tabs.Size = new Size(730, 600);
 
             switch (e.KeyCode)
             {
@@ -758,7 +758,7 @@ namespace Form1
                                 tabs.TabPages[tabs.TabCount - 1].Width = tabs.TabPages[tabs.TabCount - 1].Width + 15;
 
                                 WebBrowser preview_browse = new WebBrowser();
-                                preview_browse.Size = new Size(630, 600);
+                                preview_browse.Size = new Size(730, 600);
 
                                 preview_browse.Url = new Uri(video_url);
 
