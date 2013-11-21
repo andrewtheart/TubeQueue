@@ -39,6 +39,7 @@
             this.ClearProcessingQueue = new System.Windows.Forms.Button();
             this.DownloadAndProcessButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.lvDownloads = new EXControls.EXListView();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.builtInYTSearchTab = new System.Windows.Forms.TabPage();
@@ -137,7 +138,6 @@
             this.delete_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
             this.mediaLibImageList = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.lvDownloads = new EXControls.EXListView();
             this.MainTabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -274,6 +274,20 @@
             this.label13.Size = new System.Drawing.Size(188, 22);
             this.label13.TabIndex = 32;
             this.label13.Text = "Download Progress";
+            // 
+            // lvDownloads
+            // 
+            this.lvDownloads.ControlPadding = 4;
+            this.lvDownloads.FullRowSelect = true;
+            this.lvDownloads.Location = new System.Drawing.Point(510, 441);
+            this.lvDownloads.MaximumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.MinimumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.Name = "lvDownloads";
+            this.lvDownloads.OwnerDraw = true;
+            this.lvDownloads.Size = new System.Drawing.Size(564, 149);
+            this.lvDownloads.TabIndex = 2;
+            this.lvDownloads.UseCompatibleStateImageBehavior = false;
+            this.lvDownloads.View = System.Windows.Forms.View.Tile;
             // 
             // button2
             // 
@@ -533,6 +547,7 @@
             this.youtube_browser.Location = new System.Drawing.Point(3, 22);
             this.youtube_browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.youtube_browser.Name = "youtube_browser";
+            this.youtube_browser.ScriptErrorsSuppressed = true;
             this.youtube_browser.Size = new System.Drawing.Size(569, 350);
             this.youtube_browser.TabIndex = 0;
             this.youtube_browser.Url = new System.Uri("", System.UriKind.Relative);
@@ -1318,20 +1333,6 @@
             this.mediaLibImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.mediaLibImageList.ImageSize = new System.Drawing.Size(16, 16);
             this.mediaLibImageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // lvDownloads
-            // 
-            this.lvDownloads.ControlPadding = 4;
-            this.lvDownloads.FullRowSelect = true;
-            this.lvDownloads.Location = new System.Drawing.Point(510, 441);
-            this.lvDownloads.MaximumSize = new System.Drawing.Size(564, 149);
-            this.lvDownloads.MinimumSize = new System.Drawing.Size(564, 149);
-            this.lvDownloads.Name = "lvDownloads";
-            this.lvDownloads.OwnerDraw = true;
-            this.lvDownloads.Size = new System.Drawing.Size(564, 149);
-            this.lvDownloads.TabIndex = 2;
-            this.lvDownloads.UseCompatibleStateImageBehavior = false;
-            this.lvDownloads.View = System.Windows.Forms.View.Tile;
             // 
             // TubeQueue
             // 
