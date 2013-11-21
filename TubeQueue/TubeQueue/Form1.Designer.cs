@@ -39,7 +39,6 @@
             this.ClearProcessingQueue = new System.Windows.Forms.Button();
             this.DownloadAndProcessButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.lvDownloads = new EXControls.EXListView();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.builtInYTSearchTab = new System.Windows.Forms.TabPage();
@@ -138,6 +137,13 @@
             this.delete_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
             this.mediaLibImageList = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.aboutTab = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lvDownloads = new EXControls.EXListView();
             this.MainTabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -156,6 +162,7 @@
             this.number_of_urls.SuspendLayout();
             this.addsingleURL.SuspendLayout();
             this.queue_menu_options.SuspendLayout();
+            this.aboutTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // iconList_search
@@ -168,6 +175,7 @@
             // 
             this.MainTabs.Controls.Add(this.tabPage3);
             this.MainTabs.Controls.Add(this.tabPage4);
+            this.MainTabs.Controls.Add(this.aboutTab);
             this.MainTabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainTabs.Location = new System.Drawing.Point(2, 2);
             this.MainTabs.Name = "MainTabs";
@@ -274,20 +282,6 @@
             this.label13.Size = new System.Drawing.Size(188, 22);
             this.label13.TabIndex = 32;
             this.label13.Text = "Download Progress";
-            // 
-            // lvDownloads
-            // 
-            this.lvDownloads.ControlPadding = 4;
-            this.lvDownloads.FullRowSelect = true;
-            this.lvDownloads.Location = new System.Drawing.Point(510, 441);
-            this.lvDownloads.MaximumSize = new System.Drawing.Size(564, 149);
-            this.lvDownloads.MinimumSize = new System.Drawing.Size(564, 149);
-            this.lvDownloads.Name = "lvDownloads";
-            this.lvDownloads.OwnerDraw = true;
-            this.lvDownloads.Size = new System.Drawing.Size(564, 149);
-            this.lvDownloads.TabIndex = 2;
-            this.lvDownloads.UseCompatibleStateImageBehavior = false;
-            this.lvDownloads.View = System.Windows.Forms.View.Tile;
             // 
             // button2
             // 
@@ -1334,6 +1328,82 @@
             this.mediaLibImageList.ImageSize = new System.Drawing.Size(16, 16);
             this.mediaLibImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // aboutTab
+            // 
+            this.aboutTab.Controls.Add(this.textBox1);
+            this.aboutTab.Controls.Add(this.linkLabel4);
+            this.aboutTab.Controls.Add(this.linkLabel3);
+            this.aboutTab.Controls.Add(this.linkLabel2);
+            this.aboutTab.Controls.Add(this.label17);
+            this.aboutTab.Location = new System.Drawing.Point(4, 22);
+            this.aboutTab.Name = "aboutTab";
+            this.aboutTab.Padding = new System.Windows.Forms.Padding(3);
+            this.aboutTab.Size = new System.Drawing.Size(1083, 594);
+            this.aboutTab.TabIndex = 2;
+            this.aboutTab.Text = "About";
+            this.aboutTab.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(16, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(144, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "TubeQueue by Andrew Stein";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(16, 36);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(317, 13);
+            this.linkLabel2.TabIndex = 2;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "http://fileforum.betanews.com/detail/TubeQueue/1219424161/1";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(16, 49);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(220, 13);
+            this.linkLabel3.TabIndex = 3;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "https://sourceforge.net/projects/tubequeue/";
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(16, 62);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(224, 13);
+            this.linkLabel4.TabIndex = 4;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "https://github.com/andrewtheart/TubeQueue";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(166, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(128, 20);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "andrew1stein@gmail.com";
+            // 
+            // lvDownloads
+            // 
+            this.lvDownloads.ControlPadding = 4;
+            this.lvDownloads.FullRowSelect = true;
+            this.lvDownloads.Location = new System.Drawing.Point(510, 441);
+            this.lvDownloads.MaximumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.MinimumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.Name = "lvDownloads";
+            this.lvDownloads.OwnerDraw = true;
+            this.lvDownloads.Size = new System.Drawing.Size(564, 149);
+            this.lvDownloads.TabIndex = 2;
+            this.lvDownloads.UseCompatibleStateImageBehavior = false;
+            this.lvDownloads.View = System.Windows.Forms.View.Tile;
+            // 
             // TubeQueue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1374,6 +1444,8 @@
             this.addsingleURL.ResumeLayout(false);
             this.addsingleURL.PerformLayout();
             this.queue_menu_options.ResumeLayout(false);
+            this.aboutTab.ResumeLayout(false);
+            this.aboutTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1489,6 +1561,12 @@
         private System.Windows.Forms.Button maximizeYTbutton;
         private System.Windows.Forms.Button maximizeOrMinimizeSearchListButton;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TabPage aboutTab;
+        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
