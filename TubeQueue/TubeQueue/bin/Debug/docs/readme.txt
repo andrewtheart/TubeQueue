@@ -2,9 +2,7 @@
 Must read section!!!
 ********************
 
-(1) You need the .NET framework 3.5 installed to run this program. It may or may not prompt you to install it. If not, download it from this link -- 
-
-http://www.microsoft.com/downloads/details.aspx?familyid=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en
+(1) You need the .NET framework 2.0 installed to run this program. It may or may not prompt you to install it.
 
 
 ****
@@ -39,12 +37,23 @@ Contact with Bug Reports, etc
 *****************************
 
 andrew1stein@gmail.com
-http://www.andrewsteinhome.com
 http://www.tubequeue.com
 
 *****************************
 Version History
 *****************************
+
+v1.66 (11/20/2013)
+-----
+
+* Re-added update checking feature to program.
+* Ignore script errors in web browser to improve performance and when someone pointed out they were getting script errors
+
+v1.65 (11/19/2013)
+-----
+
+* Hotfix for youtube downloading issues
+* Made maximize/minimize features for search list and youtube browser better
 
 v1.57 (01/08/2010)
 -----
