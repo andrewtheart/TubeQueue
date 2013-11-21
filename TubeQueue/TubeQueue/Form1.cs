@@ -33,8 +33,8 @@ namespace Form1
 
         // UPDATE ON RELEASE!!!!
 
-        String version_number = "1.65";
-        String release_date = "11/19/2013";
+        String version_number = "1.66";
+        String release_date = "11/20/2013";
 
         [DllImport("user32.dll")]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,
@@ -684,6 +684,75 @@ namespace Form1
             originalDescriptionColumnWidth = searchList.Columns[2].Width;
 
             maximizeOrMinimizeSearchListButton.Tag = "minimized";
+
+            CheckForUpdates();
+
+
+        }
+
+        private void CheckForUpdates()
+        {
+
+            bool contactedUpdatedServer = false;
+
+            try
+            {
+                WebClient Client = new WebClient();
+                Client.DownloadFile("http://www.steinsolutions.com/home/TubeQueue/latestversion.txt", Application.StartupPath + "\\latestversion.txt");
+                contactedUpdatedServer = true;
+
+            }
+
+            catch
+            {
+
+                if (MessageBox.Show(
+                    "Cannot contact update server. This version may not be able to download videos from YouTube.\n\nVisit program homepage to check for updates?", "Cannot contact update server", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk
+                ) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("http://fileforum.betanews.com/detail/TubeQueue/1219424161/1");
+                }
+            }
+
+            if (contactedUpdatedServer)
+            {
+                String latestVersionText = File.ReadAllText(Application.StartupPath + "\\latestversion.txt");
+                String[] latestVersion_split = latestVersionText.Split(',');
+                Double latestVersion = Double.Parse(latestVersion_split[0]);
+                String criticality = latestVersion_split[1];
+                String releaseDate = latestVersion_split[2];
+
+                String thisVersionText = File.ReadAllText(Application.StartupPath + "\\thisversion.txt");
+                String[] thisVersionText_split = thisVersionText.Split(',');
+                Double thisVersion = Double.Parse(thisVersionText_split[0]);
+
+                if (latestVersion > thisVersion)
+                {
+                    String message;
+
+                    if (criticality == "critical")
+                    {
+                        message = "A new version of TubeQueue (v. " + latestVersion + ") was released on " + releaseDate + ".\n\nIt is considered a critical update. If you do not update, you may not be able to download YouTube videos.\n\nVisit website to update?";
+                    }
+                    else
+                    {
+                        message = "A new version of TubeQueue (v. " + latestVersion + ") was released on " + releaseDate + ".\n\nIt is not considered a critical update but it may contain bug fixes and new features.\n\nVisit website to update?";
+                    }
+
+                    if (MessageBox.Show(
+                        message, "New version avaiable", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk
+                    ) == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start("http://fileforum.betanews.com/detail/TubeQueue/1219424161/1");
+                    }
+
+                }
+            }
+
+           
+
+
+
         }
 
 
