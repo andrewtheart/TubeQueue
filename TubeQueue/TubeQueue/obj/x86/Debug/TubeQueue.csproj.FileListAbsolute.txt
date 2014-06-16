@@ -27,3 +27,4 @@ C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQue
 C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.Properties.Resources.resources
 C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.YoutubeWebsiteControls.resources
 C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.csproj.GenerateResource.Cache
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\TubeQueue\obj\x86\Debug\TubeQueue.VideoQualitySelection.resources

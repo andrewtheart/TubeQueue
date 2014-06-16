@@ -6,3 +6,12 @@ C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\YTDownload\YTDownload\ob
 C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\YTDownload\YTDownload\obj\Debug\YTDownload.pdb
 C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\YTDownload\YTDownload\bin\Debug\YTDownload.dll
 C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\YTDownload\YTDownload\obj\Debug\YTDownload.dll
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\bin\Debug\YTDownload.dll
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\bin\Debug\YTDownload.pdb
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\bin\Debug\YTDownload.xml
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\obj\Debug\YTDownload.Resources.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\obj\Debug\YTDownload.TestForm.resources
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\obj\Debug\YTDownload.vbproj.GenerateResource.Cache
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\obj\Debug\YTDownload.dll
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\obj\Debug\YTDownload.xml
+C:\Users\Andrew\Dropbox\0DOC\Misc. Programming Projects\GitHub\TubeQueue\TubeQueue\YTDownload\YTDownload\obj\Debug\YTDownload.pdb

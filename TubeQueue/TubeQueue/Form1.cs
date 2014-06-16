@@ -33,8 +33,8 @@ namespace Form1
 
         // UPDATE ON RELEASE!!!!
 
-        String version_number = "1.66";
-        String release_date = "11/20/2013";
+        String version_number = "1.67";
+        String release_date = "6/15/2014";
 
         [DllImport("user32.dll")]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,
@@ -1242,21 +1242,40 @@ namespace Form1
 
         public string get_download_url(string Url)
         {
+            //String retUrl = "";
+
+            //YTDownload.YTDownload yt = new YTDownload.YTDownload(Url);
+            //Dictionary<String, String> urls = yt.GetAllUrls;
+
+            //foreach (KeyValuePair<string, string> entry in urls)
+            //{
+            //    if (entry.Key.ToLower().Contains("flv"))
+            //    {
+            //        retUrl = entry.Value;
+            //    }
+
+            //}
+
+            //return retUrl;
+
+
             String retUrl = "";
 
-            YTDownload.YTDownload yt = new YTDownload.YTDownload(Url);
-            Dictionary<String, String> urls = yt.GetAllUrls;
+            VideoQualitySelection frmVqs = new VideoQualitySelection(Url);
 
-            foreach (KeyValuePair<string, string> entry in urls)
+            frmVqs.btnOk.DialogResult = DialogResult.OK;
+            var result = frmVqs.ShowDialog();
+
+            if (result.ToString() == "OK")
             {
-                if (entry.Key.ToLower().Contains("flv"))
-                {
-                    retUrl = entry.Value;
-                }
-
+                retUrl = frmVqs.QualityAsURL;
             }
 
+            frmVqs.Dispose();
+
             return retUrl;
+
+
         }
 
 
