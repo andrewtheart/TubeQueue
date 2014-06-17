@@ -39,6 +39,7 @@
             this.ClearProcessingQueue = new System.Windows.Forms.Button();
             this.DownloadAndProcessButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.lvDownloads = new EXControls.EXListView();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.builtInYTSearchTab = new System.Windows.Forms.TabPage();
@@ -51,18 +52,19 @@
             this.sortByViewCount = new System.Windows.Forms.RadioButton();
             this.SortByLabel = new System.Windows.Forms.Label();
             this.sortByRelevance = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pagePrevious25 = new System.Windows.Forms.Button();
             this.sortByRating = new System.Windows.Forms.RadioButton();
             this.sortByDateAdded = new System.Windows.Forms.RadioButton();
             this.PreviewMode = new System.Windows.Forms.CheckBox();
             this.searchList = new System.Windows.Forms.ListView();
-            this.getMoreSearchResults = new System.Windows.Forms.Button();
+            this.pageNext25 = new System.Windows.Forms.Button();
             this.YouTubeWebsiteSearchTab = new System.Windows.Forms.TabPage();
             this.maximizeYTbutton = new System.Windows.Forms.Button();
             this.youtube_browser = new System.Windows.Forms.WebBrowser();
             this.grab_url_of_video = new System.Windows.Forms.Button();
             this.mediaLibTab = new System.Windows.Forms.TabPage();
             this.lvMediaLibrary = new System.Windows.Forms.ListView();
+            this.mediaLibImageList = new System.Windows.Forms.ImageList(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ProcessLabel = new System.Windows.Forms.Label();
@@ -102,6 +104,8 @@
             this.NoVideoSelectedYet2 = new System.Windows.Forms.Label();
             this.NoVideoSelectedYet3 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbClearTempDirOnExit = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.conv_video_textbox = new System.Windows.Forms.TextBox();
             this.temp_dir_textbox = new System.Windows.Forms.TextBox();
@@ -118,6 +122,12 @@
             this.experTabView_prev = new System.Windows.Forms.CheckBox();
             this.AutoResizeSearch = new System.Windows.Forms.CheckBox();
             this.AppendSearch = new System.Windows.Forms.CheckBox();
+            this.aboutTab = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label17 = new System.Windows.Forms.Label();
             this.processingQueueStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeProcessingQueueItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savedFFMPEGTweakedSettings = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -135,15 +145,7 @@
             this.queue_menu_options = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rename_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
             this.delete_queue_menu_options = new System.Windows.Forms.ToolStripMenuItem();
-            this.mediaLibImageList = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.aboutTab = new System.Windows.Forms.TabPage();
-            this.label17 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lvDownloads = new EXControls.EXListView();
             this.MainTabs.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -154,15 +156,16 @@
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.InterfaceSettings.SuspendLayout();
+            this.aboutTab.SuspendLayout();
             this.processingQueueStrip.SuspendLayout();
             this.savedFFMPEGTweakedSettings.SuspendLayout();
             this.addToQueueStrip.SuspendLayout();
             this.number_of_urls.SuspendLayout();
             this.addsingleURL.SuspendLayout();
             this.queue_menu_options.SuspendLayout();
-            this.aboutTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // iconList_search
@@ -283,6 +286,20 @@
             this.label13.TabIndex = 32;
             this.label13.Text = "Download Progress";
             // 
+            // lvDownloads
+            // 
+            this.lvDownloads.ControlPadding = 4;
+            this.lvDownloads.FullRowSelect = true;
+            this.lvDownloads.Location = new System.Drawing.Point(510, 441);
+            this.lvDownloads.MaximumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.MinimumSize = new System.Drawing.Size(564, 149);
+            this.lvDownloads.Name = "lvDownloads";
+            this.lvDownloads.OwnerDraw = true;
+            this.lvDownloads.Size = new System.Drawing.Size(564, 149);
+            this.lvDownloads.TabIndex = 2;
+            this.lvDownloads.UseCompatibleStateImageBehavior = false;
+            this.lvDownloads.View = System.Windows.Forms.View.Tile;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(708, 408);
@@ -317,12 +334,12 @@
             this.builtInYTSearchTab.Controls.Add(this.sortByViewCount);
             this.builtInYTSearchTab.Controls.Add(this.SortByLabel);
             this.builtInYTSearchTab.Controls.Add(this.sortByRelevance);
-            this.builtInYTSearchTab.Controls.Add(this.button1);
+            this.builtInYTSearchTab.Controls.Add(this.pagePrevious25);
             this.builtInYTSearchTab.Controls.Add(this.sortByRating);
             this.builtInYTSearchTab.Controls.Add(this.sortByDateAdded);
             this.builtInYTSearchTab.Controls.Add(this.PreviewMode);
             this.builtInYTSearchTab.Controls.Add(this.searchList);
-            this.builtInYTSearchTab.Controls.Add(this.getMoreSearchResults);
+            this.builtInYTSearchTab.Controls.Add(this.pageNext25);
             this.builtInYTSearchTab.Location = new System.Drawing.Point(4, 22);
             this.builtInYTSearchTab.Name = "builtInYTSearchTab";
             this.builtInYTSearchTab.Padding = new System.Windows.Forms.Padding(3);
@@ -343,6 +360,8 @@
             this.maximizeOrMinimizeSearchListButton.TabIndex = 32;
             this.maximizeOrMinimizeSearchListButton.UseVisualStyleBackColor = true;
             this.maximizeOrMinimizeSearchListButton.Click += new System.EventHandler(this.maximizeOrMinimizeSearchListButton_Click);
+            this.maximizeOrMinimizeSearchListButton.MouseEnter += new System.EventHandler(this.maximizeOrMinimizeSearchListButton_MouseEnter);
+            this.maximizeOrMinimizeSearchListButton.MouseLeave += new System.EventHandler(this.maximizeOrMinimizeSearchListButton_MouseLeave);
             // 
             // label16
             // 
@@ -383,7 +402,6 @@
             this.SearchTermTextbox.Name = "SearchTermTextbox";
             this.SearchTermTextbox.Size = new System.Drawing.Size(317, 26);
             this.SearchTermTextbox.TabIndex = 0;
-            this.SearchTermTextbox.TextChanged += new System.EventHandler(this.SearchTermTextbox_TextChanged);
             this.SearchTermTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTermTextbox_KeyDown);
             this.SearchTermTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchTermTextbox_KeyPress);
             // 
@@ -434,17 +452,19 @@
             this.sortByRelevance.UseVisualStyleBackColor = true;
             this.sortByRelevance.CheckedChanged += new System.EventHandler(this.sortByRelevance_CheckedChanged);
             // 
-            // button1
+            // pagePrevious25
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(500, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 26);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.pagePrevious25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pagePrevious25.ForeColor = System.Drawing.Color.Blue;
+            this.pagePrevious25.Location = new System.Drawing.Point(500, 58);
+            this.pagePrevious25.Name = "pagePrevious25";
+            this.pagePrevious25.Size = new System.Drawing.Size(31, 26);
+            this.pagePrevious25.TabIndex = 26;
+            this.pagePrevious25.Text = "<";
+            this.pagePrevious25.UseVisualStyleBackColor = true;
+            this.pagePrevious25.Click += new System.EventHandler(this.button1_Click_1);
+            this.pagePrevious25.MouseEnter += new System.EventHandler(this.pagePrevious25_MouseEnter);
+            this.pagePrevious25.MouseLeave += new System.EventHandler(this.pagePrevious25_MouseLeave);
             // 
             // sortByRating
             // 
@@ -494,21 +514,22 @@
             this.searchList.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.searchList_ColumnClick);
             this.searchList.SelectedIndexChanged += new System.EventHandler(this.searchList_SelectedIndexChanged_1);
             this.searchList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchList_KeyDown);
-            this.searchList.MouseHover += new System.EventHandler(this.searchList_MouseHover);
             this.searchList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.searchList_MouseMove);
             this.searchList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.searchList_MouseUp);
             // 
-            // getMoreSearchResults
+            // pageNext25
             // 
-            this.getMoreSearchResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.getMoreSearchResults.ForeColor = System.Drawing.Color.Blue;
-            this.getMoreSearchResults.Location = new System.Drawing.Point(537, 58);
-            this.getMoreSearchResults.Name = "getMoreSearchResults";
-            this.getMoreSearchResults.Size = new System.Drawing.Size(30, 26);
-            this.getMoreSearchResults.TabIndex = 13;
-            this.getMoreSearchResults.Text = ">";
-            this.getMoreSearchResults.UseVisualStyleBackColor = true;
-            this.getMoreSearchResults.Click += new System.EventHandler(this.page25More);
+            this.pageNext25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pageNext25.ForeColor = System.Drawing.Color.Blue;
+            this.pageNext25.Location = new System.Drawing.Point(537, 58);
+            this.pageNext25.Name = "pageNext25";
+            this.pageNext25.Size = new System.Drawing.Size(30, 26);
+            this.pageNext25.TabIndex = 13;
+            this.pageNext25.Text = ">";
+            this.pageNext25.UseVisualStyleBackColor = true;
+            this.pageNext25.Click += new System.EventHandler(this.page25More);
+            this.pageNext25.MouseEnter += new System.EventHandler(this.pageNext25_MouseEnter);
+            this.pageNext25.MouseLeave += new System.EventHandler(this.pageNext25_MouseLeave);
             // 
             // YouTubeWebsiteSearchTab
             // 
@@ -535,6 +556,8 @@
             this.maximizeYTbutton.TabIndex = 31;
             this.maximizeYTbutton.UseVisualStyleBackColor = true;
             this.maximizeYTbutton.Click += new System.EventHandler(this.maximizeYTbutton_Click);
+            this.maximizeYTbutton.MouseEnter += new System.EventHandler(this.maximizeYTbutton_MouseEnter);
+            this.maximizeYTbutton.MouseLeave += new System.EventHandler(this.maximizeYTbutton_MouseLeave);
             // 
             // youtube_browser
             // 
@@ -573,11 +596,21 @@
             // lvMediaLibrary
             // 
             this.lvMediaLibrary.Location = new System.Drawing.Point(6, 3);
+            this.lvMediaLibrary.MultiSelect = false;
             this.lvMediaLibrary.Name = "lvMediaLibrary";
             this.lvMediaLibrary.Size = new System.Drawing.Size(566, 367);
+            this.lvMediaLibrary.SmallImageList = this.mediaLibImageList;
+            this.lvMediaLibrary.StateImageList = this.mediaLibImageList;
             this.lvMediaLibrary.TabIndex = 0;
             this.lvMediaLibrary.UseCompatibleStateImageBehavior = false;
             this.lvMediaLibrary.View = System.Windows.Forms.View.Tile;
+            this.lvMediaLibrary.DoubleClick += new System.EventHandler(this.lvMediaLibrary_DoubleClick);
+            // 
+            // mediaLibImageList
+            // 
+            this.mediaLibImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.mediaLibImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.mediaLibImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // button3
             // 
@@ -689,7 +722,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Video Collection Queue";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // label11
             // 
@@ -944,9 +976,7 @@
             this.queue.TabIndex = 0;
             this.queue.UseCompatibleStateImageBehavior = false;
             this.queue.View = System.Windows.Forms.View.Details;
-            this.queue.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.queue_AfterLabelEdit);
             this.queue.DoubleClick += new System.EventHandler(this.queue_DoubleClick);
-            this.queue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.queue_MouseDown);
             this.queue.MouseMove += new System.Windows.Forms.MouseEventHandler(this.queue_MouseMove);
             this.queue.MouseUp += new System.Windows.Forms.MouseEventHandler(this.queue_MouseUp_1);
             // 
@@ -987,7 +1017,7 @@
             // 
             this.NoVideoSelectedYet.AutoSize = true;
             this.NoVideoSelectedYet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NoVideoSelectedYet.Location = new System.Drawing.Point(3, 174);
+            this.NoVideoSelectedYet.Location = new System.Drawing.Point(6, 164);
             this.NoVideoSelectedYet.Name = "NoVideoSelectedYet";
             this.NoVideoSelectedYet.Size = new System.Drawing.Size(500, 15);
             this.NoVideoSelectedYet.TabIndex = 1;
@@ -1016,6 +1046,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.groupBox2);
             this.tabPage4.Controls.Add(this.groupBox1);
             this.tabPage4.Controls.Add(this.SaveSettingsButton);
             this.tabPage4.Controls.Add(this.InterfaceSettings);
@@ -1026,6 +1057,26 @@
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Settings";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbClearTempDirOnExit);
+            this.groupBox2.Location = new System.Drawing.Point(552, 15);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(144, 40);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Misc";
+            // 
+            // cbClearTempDirOnExit
+            // 
+            this.cbClearTempDirOnExit.AutoSize = true;
+            this.cbClearTempDirOnExit.Location = new System.Drawing.Point(15, 19);
+            this.cbClearTempDirOnExit.Name = "cbClearTempDirOnExit";
+            this.cbClearTempDirOnExit.Size = new System.Drawing.Size(124, 17);
+            this.cbClearTempDirOnExit.TabIndex = 4;
+            this.cbClearTempDirOnExit.Text = "Clear temp dir on exit";
+            this.cbClearTempDirOnExit.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -1039,7 +1090,7 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Location = new System.Drawing.Point(13, 165);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(504, 138);
+            this.groupBox1.Size = new System.Drawing.Size(525, 138);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Directories";
@@ -1074,7 +1125,7 @@
             // temp_cwd
             // 
             this.temp_cwd.AutoSize = true;
-            this.temp_cwd.Location = new System.Drawing.Point(118, 20);
+            this.temp_cwd.Location = new System.Drawing.Point(182, 18);
             this.temp_cwd.Name = "temp_cwd";
             this.temp_cwd.Size = new System.Drawing.Size(133, 17);
             this.temp_cwd.TabIndex = 4;
@@ -1084,7 +1135,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(384, 81);
+            this.button5.Location = new System.Drawing.Point(407, 79);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(112, 23);
             this.button5.TabIndex = 3;
@@ -1094,7 +1145,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(257, 14);
+            this.button4.Location = new System.Drawing.Point(407, 15);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(112, 23);
             this.button4.TabIndex = 2;
@@ -1108,9 +1159,9 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(15, 86);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(161, 13);
+            this.label15.Size = new System.Drawing.Size(157, 13);
             this.label15.TabIndex = 1;
-            this.label15.Text = "Processed Video Directory:";
+            this.label15.Text = "Processed Video Directory";
             // 
             // label14
             // 
@@ -1118,9 +1169,9 @@
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(15, 20);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(97, 13);
+            this.label14.Size = new System.Drawing.Size(93, 13);
             this.label14.TabIndex = 0;
-            this.label14.Text = "Temp Directory:";
+            this.label14.Text = "Temp Directory";
             // 
             // SaveSettingsButton
             // 
@@ -1205,6 +1256,68 @@
     "st)";
             this.AppendSearch.UseVisualStyleBackColor = true;
             // 
+            // aboutTab
+            // 
+            this.aboutTab.Controls.Add(this.textBox1);
+            this.aboutTab.Controls.Add(this.linkLabel4);
+            this.aboutTab.Controls.Add(this.linkLabel3);
+            this.aboutTab.Controls.Add(this.linkLabel2);
+            this.aboutTab.Controls.Add(this.label17);
+            this.aboutTab.Location = new System.Drawing.Point(4, 22);
+            this.aboutTab.Name = "aboutTab";
+            this.aboutTab.Padding = new System.Windows.Forms.Padding(3);
+            this.aboutTab.Size = new System.Drawing.Size(1083, 594);
+            this.aboutTab.TabIndex = 2;
+            this.aboutTab.Text = "About";
+            this.aboutTab.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(166, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(128, 20);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "andrew1stein@gmail.com";
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(16, 62);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(224, 13);
+            this.linkLabel4.TabIndex = 4;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "https://github.com/andrewtheart/TubeQueue";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(16, 49);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(220, 13);
+            this.linkLabel3.TabIndex = 3;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "https://sourceforge.net/projects/tubequeue/";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(16, 36);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(317, 13);
+            this.linkLabel2.TabIndex = 2;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "http://fileforum.betanews.com/detail/TubeQueue/1219424161/1";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(16, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(144, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "TubeQueue by Andrew Stein";
+            // 
             // processingQueueStrip
             // 
             this.processingQueueStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1282,7 +1395,6 @@
             this.single_URL_add});
             this.addsingleURL.Name = "addsingleURL";
             this.addsingleURL.Size = new System.Drawing.Size(311, 29);
-            this.addsingleURL.Opening += new System.ComponentModel.CancelEventHandler(this.addsingleURL_Opening);
             // 
             // single_URL_add
             // 
@@ -1296,7 +1408,6 @@
             // openLocalFLVFile
             // 
             this.openLocalFLVFile.Filter = "FLV Flash Video Files (*.flv)|*.flv|All Files|*.*";
-            this.openLocalFLVFile.FileOk += new System.ComponentModel.CancelEventHandler(this.openLocalFLVFile_FileOk);
             // 
             // queue_menu_options
             // 
@@ -1321,88 +1432,6 @@
             this.delete_queue_menu_options.Text = "Delete";
             this.delete_queue_menu_options.ToolTipText = "Delete the selected video(s)";
             this.delete_queue_menu_options.Click += new System.EventHandler(this.delete_queue_menu_options_Click);
-            // 
-            // mediaLibImageList
-            // 
-            this.mediaLibImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.mediaLibImageList.ImageSize = new System.Drawing.Size(16, 16);
-            this.mediaLibImageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // aboutTab
-            // 
-            this.aboutTab.Controls.Add(this.textBox1);
-            this.aboutTab.Controls.Add(this.linkLabel4);
-            this.aboutTab.Controls.Add(this.linkLabel3);
-            this.aboutTab.Controls.Add(this.linkLabel2);
-            this.aboutTab.Controls.Add(this.label17);
-            this.aboutTab.Location = new System.Drawing.Point(4, 22);
-            this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.aboutTab.Size = new System.Drawing.Size(1083, 594);
-            this.aboutTab.TabIndex = 2;
-            this.aboutTab.Text = "About";
-            this.aboutTab.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(16, 16);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(144, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "TubeQueue by Andrew Stein";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(16, 36);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(317, 13);
-            this.linkLabel2.TabIndex = 2;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "http://fileforum.betanews.com/detail/TubeQueue/1219424161/1";
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(16, 49);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(220, 13);
-            this.linkLabel3.TabIndex = 3;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "https://sourceforge.net/projects/tubequeue/";
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(16, 62);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(224, 13);
-            this.linkLabel4.TabIndex = 4;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "https://github.com/andrewtheart/TubeQueue";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(166, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(128, 20);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "andrew1stein@gmail.com";
-            // 
-            // lvDownloads
-            // 
-            this.lvDownloads.ControlPadding = 4;
-            this.lvDownloads.FullRowSelect = true;
-            this.lvDownloads.Location = new System.Drawing.Point(510, 441);
-            this.lvDownloads.MaximumSize = new System.Drawing.Size(564, 149);
-            this.lvDownloads.MinimumSize = new System.Drawing.Size(564, 149);
-            this.lvDownloads.Name = "lvDownloads";
-            this.lvDownloads.OwnerDraw = true;
-            this.lvDownloads.Size = new System.Drawing.Size(564, 149);
-            this.lvDownloads.TabIndex = 2;
-            this.lvDownloads.UseCompatibleStateImageBehavior = false;
-            this.lvDownloads.View = System.Windows.Forms.View.Tile;
             // 
             // TubeQueue
             // 
@@ -1432,10 +1461,14 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.InterfaceSettings.ResumeLayout(false);
             this.InterfaceSettings.PerformLayout();
+            this.aboutTab.ResumeLayout(false);
+            this.aboutTab.PerformLayout();
             this.processingQueueStrip.ResumeLayout(false);
             this.savedFFMPEGTweakedSettings.ResumeLayout(false);
             this.savedFFMPEGTweakedSettings.PerformLayout();
@@ -1444,8 +1477,6 @@
             this.addsingleURL.ResumeLayout(false);
             this.addsingleURL.PerformLayout();
             this.queue_menu_options.ResumeLayout(false);
-            this.aboutTab.ResumeLayout(false);
-            this.aboutTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1477,12 +1508,12 @@
         private System.Windows.Forms.RadioButton sortByViewCount;
         private System.Windows.Forms.Label SortByLabel;
         private System.Windows.Forms.RadioButton sortByRelevance;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button pagePrevious25;
         private System.Windows.Forms.RadioButton sortByRating;
         private System.Windows.Forms.RadioButton sortByDateAdded;
         private System.Windows.Forms.CheckBox PreviewMode;
         private System.Windows.Forms.ListView searchList;
-        private System.Windows.Forms.Button getMoreSearchResults;
+        private System.Windows.Forms.Button pageNext25;
         private System.Windows.Forms.TabPage YouTubeWebsiteSearchTab;
         private System.Windows.Forms.WebBrowser youtube_browser;
         private System.Windows.Forms.Button button3;
@@ -1567,6 +1598,8 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.CheckBox cbClearTempDirOnExit;
     }
 }
 

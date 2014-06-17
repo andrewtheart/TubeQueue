@@ -20,6 +20,8 @@ using System.Text.RegularExpressions;
 using HSToolKit.MessagesWin32;
 using System.Web;
 using TubeQueue;
+using SS.YoutubeDownloader;
+
 
 
 
@@ -27,15 +29,28 @@ namespace Form1
 {
     public partial class TubeQueue : Form
     {
+
+        
+        // UPDATE ON RELEASE!!!!
+
+        String version_number = "1.68";
+        String release_date = "6/16/2014";
+
+
+        // generic tooltip we will use for help messages
+
+        ToolTip ttHelp;
+
+
         private bool keyHandled;
         bool first_run = true;
         
 
-        // UPDATE ON RELEASE!!!!
 
-        String version_number = "1.67";
-        String release_date = "6/15/2014";
-
+        /*
+         *  Start WaitBoxDialog unmanaged imports
+         */
+           
         [DllImport("user32.dll")]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,
             int Y, int cx, int cy, uint uFlags);
@@ -59,9 +74,6 @@ namespace Form1
         const UInt32 TOPMOST_FLAGS = SWP_NOMOVE | SWP_NOSIZE;
 
 
-
-        
-
         [DllImport("USER32.DLL")]
         public static extern bool BringWindowToTop(IntPtr hWnd);
 
@@ -74,6 +86,9 @@ namespace Form1
         [DllImport("USER32.DLL")]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
 
+        /*
+         *  End WaitBoxDialog unmanaged imports
+         */
 
 
         string current_working_directory = Application.StartupPath;
@@ -111,7 +126,8 @@ namespace Form1
 
         public TubeQueue()
         {
-            InitializeComponent();
+            InitializeComponent(); //required by designer
+
             searchList.View = View.Details;
             initListView();
             searchList.HideSelection = false;
@@ -125,6 +141,7 @@ namespace Form1
             progressWin = System.Diagnostics.Process.Start(current_working_directory + "\\WaitDialogBox.exe");
 
             progressWin.PriorityClass = System.Diagnostics.ProcessPriorityClass.AboveNormal;
+            
             if (!WaitForForm(progressWin, ref appWin))
             {
                 return;
@@ -134,12 +151,9 @@ namespace Form1
 
             ChangeWindowToToolWindow(appWin);
 
-
-
-            //ShowWindow(appWin, Win32.SW_MINIMIZE);
-
         }
 
+        #region Wait Dialog supporting code
         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         // FUNCTION:    WaitForForm
         // PURPOSE:     See code.
@@ -200,6 +214,7 @@ namespace Form1
                         Win32UI.SWP_NOOWNERZORDER |
                         0));
         }
+        #endregion
 
         public void loadSettings()
         {
@@ -224,6 +239,10 @@ namespace Form1
                     if (tr.ReadLine().Equals("True"))
                         prompt_for_vid_conv.Checked = true;
                     else prompt_for_vid_conv.Checked = false;
+
+                    if (tr.ReadLine().Equals("True"))
+                        cbClearTempDirOnExit.Checked = true;
+                    else cbClearTempDirOnExit.Checked = false;
 
                     string temp1 = tr.ReadLine();
 
@@ -304,30 +323,11 @@ namespace Form1
             ShowWindow(appWin, (int)Win32.SW_SHOW);
             ShowWindow(appWin, (int)Win32.SW_NORMAL);
 
-            //numResults.Text = "";
             searchList.Items.Clear();
             iconList_search.Images.Clear();
 
 
-            /*int hold_iter = image_iter;
-
-            if(search_index == 0 || search_index == 3) image_iter = 0;
-
-            if (!AppendSearch.Checked && (search_index == 0 || search_index == 3))
-            {
-                try
-                {
-                    searchList.Items.Clear();
-                    iconList_search.Images.Clear();
-                }
-
-                catch (Exception excep)
-                {
-
-                }
-
-            }*/
-
+      
             string search_term = SearchTermTextbox.Text;
 
             YouTubeQuery query = new YouTubeQuery(YouTubeQuery.DefaultVideoUri);
@@ -355,25 +355,10 @@ namespace Form1
             }
 
 
-            //exclude restricted content from the search
-            //query.Racy = "exclude";
-
+      
             query.VQ = search_term;
 
-            /*if (search_index == 1 && runIt == true)
-            {
-                int temp = image_iter+1;
-                query.StartIndex = temp;
-                runIt = false;
-            }
-
-            else if (search_index == 1) query.StartIndex = image_iter;
-
-            if (search_index == 3)
-            {
-                query.NumberToRetrieve = hold_iter;   
-            }*/
-
+          
             query.StartIndex = start_index;
             query.NumberToRetrieve = end_index - start_index;
 
@@ -495,7 +480,6 @@ namespace Form1
             ColumnHeader header3 = searchList.Columns.Add("time", "Time", Convert.ToInt32(5 * searchList.Font.SizeInPoints), HorizontalAlignment.Left, 2);
             ColumnHeader header4 = searchList.Columns.Add("view_count", "Views", Convert.ToInt32(7 * searchList.Font.SizeInPoints), HorizontalAlignment.Left, 3);
             ColumnHeader header5 = searchList.Columns.Add("rating", "Rating", Convert.ToInt32(5 * searchList.Font.SizeInPoints), HorizontalAlignment.Left, 4);
-
             ColumnHeader header7 = searchList.Columns.Add("url", "URL", 20 * Convert.ToInt32(searchList.Font.SizeInPoints), HorizontalAlignment.Left, 6);
         }
 
@@ -608,7 +592,6 @@ namespace Form1
 
         }
 
-
         private void searchList_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
@@ -651,16 +634,6 @@ namespace Form1
         {
             queue_sync_iteration = 0;
             queue.Items.Clear();
-        }
-
-        private void SearchTermTextbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchList_MouseHover(object sender, EventArgs e)
-        {
-
         }
 
         private void TubeMasterForm_Move(object sender, EventArgs e)
@@ -749,12 +722,7 @@ namespace Form1
                 }
             }
 
-           
-
-
-
         }
-
 
         private void searchList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -809,8 +777,6 @@ namespace Form1
                                 ToolsView.SelectedTab = tabPage5;
                             }
 
-
-                            //SendMessage(lvDownloads.Handle, WM_VSCROLL, (IntPtr)SB_PAGEDOWN, IntPtr.Zero);
 
                             else
                             {
@@ -1004,7 +970,6 @@ namespace Form1
             conversionSettings.Text = item.getValue();
         }
 
-
         private void DownloadAndProcessButton_Click(object sender, EventArgs e)
         {
 
@@ -1015,11 +980,6 @@ namespace Form1
             }
             try
             {
-
-                //BringWindowToTop(appWin);
-                //SetWindowPos(appWin, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
-                //ShowWindow(appWin, (int)Win32.SW_SHOW);
-                //ShowWindow(appWin, (int)Win32.SW_NORMAL);
 
                 foreach (TreeNode queue_indetification in processingQueue.Nodes)
                 {
@@ -1034,9 +994,7 @@ namespace Form1
 
                         foreach (TreeNode video in videos)
                         {
-                            ThreadStart theprogress = new ThreadStart(Download);
-                            Thread startprogress = new Thread(theprogress);
-                            startprogress.Start();
+                
 
                             string url;
                             string download_url;
@@ -1077,19 +1035,13 @@ namespace Form1
 
                 }
 
-                // ShowWindow(appWin, (int)Win32.SW_HIDE);
+             
             }
 
             catch (Exception issue)
             {
                 MessageBox.Show("There has been a problem with initiating the download/processing process. The exception text is --\n\n" + issue.ToString());
             }
-        }
-
-
-        private void Download()
-        {
-
         }
 
         public string makeTitleFileCompliant(string title_uncomp)
@@ -1135,7 +1087,6 @@ namespace Form1
 
             return (buffer);
         }
-
 
         private string convertYouTubeURL(string url)
         {
@@ -1190,6 +1141,8 @@ namespace Form1
         public string get_video_title_from_url(String url)
         {
 
+            // should really be using VideoQualitySelection library here but 
+            // too lazy to change it 
 
             String retTitle = "";
 
@@ -1199,65 +1152,11 @@ namespace Form1
 
             return retTitle;
 
-            //string title_return = "";
-
-            //try
-            //{
-
-            //    string buffer = getYouTubePageContent(url);
-
-            //    if (buffer.IndexOf("Error:") < 0)
-            //    {
-            //        int start = 0, end = 0;
-            //        string startTag = "/watch_fullscreen?";
-            //        string endTag = "'";
-            //        start = buffer.IndexOf(startTag, StringComparison.CurrentCultureIgnoreCase);
-            //        end = buffer.IndexOf(endTag, start, StringComparison.CurrentCultureIgnoreCase);
-            //        string str = buffer.Substring(start + startTag.Length, end - (start + startTag.Length));
-            //        string title = str.Substring(str.IndexOf("&title=") + 7);
-
-            //        title = title.Replace("&quot;", "\"");
-            //        // added this to get rid of the " ' " character at end of title from source
-            //        title = title.Substring(0, title.Length);
-
-            //        title_return = title;
-            //    }
-
-            //    else
-            //    {
-            //        MessageBox.Show("The URL is not valid, or there has been an error downloading the video from YouTube. This probably indicates that YouTube has changed the way they hide the video location within the HTML source code of the YouTube video page. Contact the author immediatly for a updated version of this program at http://www.andrewsteinhome.com or andrew1stein@gmail.com.\nIn the meantime, you can find another way to download the FLV file from YouTube (by using an extension like DownloadHelper for Firefox, for example) and use the \"Add Local FLV File(s) to Queue\" feature provided in this program.");
-            //        title_return = "";
-            //    }
-
-            //}
-
-            //catch (Exception issue)
-            //{
-            //    MessageBox.Show("The URL is not valid, or there has been an error downloading the video from YouTube. This probably indicates that YouTube has changed the way they hide the video location within the HTML source code of the YouTube video page. Contact the author immediatly for a updated version of this program at http://www.andrewsteinhome.com or andrew1stein@gmail.com.\nIn the meantime, you can find another way to download the FLV file from YouTube (by using an extension like DownloadHelper for Firefox, for example) and use the \"Add Local FLV File(s) to Queue\" feature provided in this program.");
-            //    title_return = "";
-            //}
-
-            //return title_return;
         }
 
         public string get_download_url(string Url)
         {
-            //String retUrl = "";
-
-            //YTDownload.YTDownload yt = new YTDownload.YTDownload(Url);
-            //Dictionary<String, String> urls = yt.GetAllUrls;
-
-            //foreach (KeyValuePair<string, string> entry in urls)
-            //{
-            //    if (entry.Key.ToLower().Contains("flv"))
-            //    {
-            //        retUrl = entry.Value;
-            //    }
-
-            //}
-
-            //return retUrl;
-
+           
 
             String retUrl = "";
 
@@ -1278,50 +1177,6 @@ namespace Form1
 
         }
 
-
-
-        /*public string get_download_url(string url)
-        {
-            string download_url = null;
-
-            try
-            {
-
-                string buffer = getYouTubePageContent(url);
-
-                if (buffer.IndexOf("Error:") < 0)
-                {
-                    int start = 0, end = 0;
-                    string startTag = "/watch_fullscreen?";
-                    string endTag = ";";
-                    start = buffer.IndexOf(startTag, StringComparison.CurrentCultureIgnoreCase);
-                    end = buffer.IndexOf(endTag, start, StringComparison.CurrentCultureIgnoreCase);
-                    string str = buffer.Substring(start + startTag.Length, end - (start + startTag.Length));
-                    string vid = str.Substring(str.IndexOf("video_id"), str.IndexOf("&", str.IndexOf("video_id")) - str.IndexOf("video_id"));
-                    string l = str.Substring(str.IndexOf("&l"), str.IndexOf("&", str.IndexOf("&l") + 1) - str.IndexOf("&l"));
-                    string t = str.Substring(str.IndexOf("&t"), str.IndexOf("&", str.IndexOf("&t") + 1) - str.IndexOf("&t"));
-                    string title_from_source = str.Substring(str.IndexOf("&title=") + 7);
-
-                    download_url = "http://youtube.com/get_video?" + vid + l + t;
-                }
-
-                else
-                {
-                    MessageBox.Show("The URL is not valid, or there has been an error downloading the video from YouTube. This probably indicates that YouTube has changed the way they hide the video location within the HTML source code of the YouTube video page. Contact the author immediatly for a updated version of this program at http://www.andrewsteinhome.com or andrew1stein@gmail.com.\nIn the meantime, you can find another way to download the FLV file from YouTube (by using an extension like DownloadHelper for Firefox, for example) and use the \"Add Local FLV File(s) to Queue\" feature provided in this program.");
-                }
-            }
-
-            catch (Exception issue)
-            {
-                MessageBox.Show("The URL is not valid, or there has been an error downloading the video from YouTube. This probably indicates that YouTube has changed the way they hide the video location within the HTML source code of the YouTube video page. Contact the author immediatly for a updated version of this program at http://www.andrewsteinhome.com or andrew1stein@gmail.com.\nIn the meantime, you can find another way to download the FLV file from YouTube (by using an extension like DownloadHelper for Firefox, for example) and use the \"Add Local FLV File(s) to Queue\" feature provided in this program.\n\n" + issue.ToString());
-                download_url = "";
-            }
-
-            return download_url;
-        }*/
-
-
-
         private void addURLToQueue_Click(object sender, MouseEventArgs e)
         {
             single_URL_add.Text = "Type in a single YouTube URL and press Enter.";
@@ -1329,7 +1184,6 @@ namespace Form1
             number_of_urls.Show(addURLToQueue, e.Location);
 
         }
-
 
         private void URL_to_queue_textbox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1595,6 +1449,7 @@ namespace Form1
             save.WriteLine(AutoResizeSearch.Checked.ToString());
             save.WriteLine(experTabView_prev.Checked.ToString());
             save.WriteLine(prompt_for_vid_conv.Checked.ToString());
+            save.WriteLine(cbClearTempDirOnExit.Checked.ToString());
 
             if (temp_cwd.Checked)
             {
@@ -1895,43 +1750,51 @@ namespace Form1
 
             if (tabControl1.SelectedTab.Name.Equals("mediaLibTab"))
             {
-                //DisplayItems(conv_video_path);
+                DisplayItems(conv_video_path);
             }
 
             
         }
 
-       
-
         private void DisplayItems(string path)
         {
+            mediaLibImageList.Images.Clear();
+            lvMediaLibrary.Items.Clear();
+
             System.IO.DirectoryInfo di = new DirectoryInfo(path);
 
             foreach (System.IO.FileInfo file in di.GetFiles())
             {
                 string key = file.Extension;
 
-              
 
-                if (!this.mediaLibImageList.Images.Keys.Contains(key))
+                if (key != ".txt")
                 {
-                    this.mediaLibImageList.Images.Add(key, System.Drawing.Icon.ExtractAssociatedIcon(file.FullName));
+                    if (!this.mediaLibImageList.Images.Keys.Contains(file.FullName))
+                    {
+                        this.mediaLibImageList.Images.Add(file.FullName, System.Drawing.Icon.ExtractAssociatedIcon(file.FullName).ToBitmap());
+                    }
+
+                    int index = this.mediaLibImageList.Images.Keys.IndexOf(file.FullName);
+
+
+                    ListViewItem item = new ListViewItem();
+
+                    item.Text = file.Name;
+
+                    item.ImageIndex = index;
+
+                    item.Tag = file.FullName;
+
+
+                    this.lvMediaLibrary.Items.Add(item);
                 }
 
-                int index = this.mediaLibImageList.Images.Keys.IndexOf(key);
-
-
-                ListViewItem item = new ListViewItem();
-
-                item.Text = file.Name;
-
-                item.ImageIndex = index;
-
-                item.Tag = file;
-
-
-                this.lvMediaLibrary.Items.Add(item);
+              
             }
+
+            lvMediaLibrary.SmallImageList = mediaLibImageList;
+            lvMediaLibrary.View = View.SmallIcon;
         }
 
         private void experTabView_prev_CheckedChanged(object sender, EventArgs e)
@@ -1943,7 +1806,6 @@ namespace Form1
 
             else PreviewMode.Text = "In-line preview active (Right Arrow Key)";
         }
-
 
         private void single_URL_add_MouseDown(object sender, MouseEventArgs e)
         {
@@ -2011,401 +1873,6 @@ namespace Form1
                 }
                 UpdateAutoScroll(ref queue);
             }
-        }
-
-        class DownloaderTask
-        {
-            string current_working_directory = Application.StartupPath;
-
-            #region Private fields
-            private WebClient webClient;
-            private string fileName;
-
-            bool local_file_global;
-            string final_temp = "";
-            string final_conv = "";
-
-            private string conversion_description;
-            bool prompt_for_vid_conv_final;
-            private Uri uriData;
-            private long fileSize;
-
-            private System.Windows.Forms.ListView lvDetails;
-            private System.Windows.Forms.ListViewGroup associatedGroup;
-            private List<System.Windows.Forms.ListViewItem> descriptionItems;
-
-            private const int DETAIL_URI = 0;
-            private const int DETAIL_BYTES = 1;
-            private const int DETAIL_CANCEL = 2;
-            #endregion
-
-            #region Constructors
-            /// <summary>
-            ///     Default constructor  
-            /// </summary>
-            /// <param name="uriData">the URI to the downloadable resource</param>
-            public DownloaderTask(Uri uriData)
-                : this(uriData, null, null, null, null, null, false, false)
-            {
-
-            }
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="uriString"></param>
-            public DownloaderTask(string uriString)
-                : this(new Uri(uriString), null, null, null, null, null, false, false)
-            {
-
-            }
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="uriString"></param>
-            /// <param name="lvDetails"></param>
-            public DownloaderTask(string uriString, System.Windows.Forms.ListView lvDetails)
-                : this(new Uri(uriString), lvDetails, null, null, null, null, false, false)
-            {
-            }
-
-            /// <summary>
-            ///     The intialization constructor
-            /// </summary>
-            /// <param name="uriData">The URI to downloadable resource</param>
-            /// <param name="lvDetails">The list view wich holds status info</param>
-            public DownloaderTask(Uri uriData, System.Windows.Forms.ListView lvDetails, string title, string conversion_descrip, string temp_path, string video_conv_path, bool prompt_for_vid_conv, bool local_file)
-            {
-                local_file_global = local_file;
-
-                prompt_for_vid_conv_final = prompt_for_vid_conv;
-
-                final_temp = temp_path;
-                final_conv = video_conv_path;
-
-                conversion_description = conversion_descrip;
-
-                // Case: File is local
-
-                if (local_file_global)
-                {
-                    fileName = title;
-
-                    if (conversion_description.Equals("<Do Nothing, Just Download>"))
-                    {
-                        File.Move(@final_temp + "\\" + fileName + ".flv", @final_conv + "\\" + fileName + ".flv");
-                    }
-
-                    else
-                    {
-                        DirectoryInfo dir_Info = new DirectoryInfo(current_working_directory);
-                        String root = dir_Info.Root.ToString().Replace("\\", "");
-
-                        FileInfo fInfo = new FileInfo(fileName);
-                        String file_name = fInfo.Name.Replace(fInfo.Extension, "");
-                        String conversion = conversion_description.Replace("%v", "\"" + fileName + "\"").Replace("%o", "\"" + final_conv + "\\" + file_name + "\"").Replace("ffmpeg", "ffmpeg.exe");
-                        TextWriter convert = new StreamWriter(current_working_directory + "\\tubequeue_latest_conversion.bat");
-                        convert.WriteLine("@echo off");
-                        convert.WriteLine(root);
-                        convert.WriteLine("CD \"" + current_working_directory + "\"");
-                        convert.WriteLine("START " + conversion);
-                        convert.Close();
-
-                        System.Diagnostics.Process convert_proc = new System.Diagnostics.Process();
-                        convert_proc.StartInfo.CreateNoWindow = true;
-
-                        if (prompt_for_vid_conv_final == true)
-
-                            MessageBox.Show("Click OK to start conversion of " + fileName + ".\n(You can turn this notice off in the Settings.)");
-                        convert_proc = System.Diagnostics.Process.Start(current_working_directory + "\\tubequeue_latest_conversion.bat");
-
-                        convert_proc.WaitForExit();
-
-                    }
-
-                }
-                else
-                {
-                    #region Prepare for download
-                    this.uriData = uriData;
-                    fileName = title;
-                    webClient = new WebClient();
-                    this.lvDetails = lvDetails;
-                    #endregion
-
-                    #region Assign call backs
-
-                    lvDetails.Width = lvDetails.Width + 50;
-                    if (lvDetails != null)
-                    {
-                        webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
-                        webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
-
-
-                        associatedGroup = lvDetails.Groups.Add((new Guid()).ToString(), String.Format("{0} - starting ... ", fileName));
-
-                        descriptionItems = new List<System.Windows.Forms.ListViewItem>();
-                        descriptionItems.Add(new System.Windows.Forms.ListViewItem(uriData.OriginalString, associatedGroup)); // DETAIL_URI
-                        descriptionItems.Add(new System.Windows.Forms.ListViewItem("Downloaded 0/? bytes", associatedGroup)); // DETAIL_BYTES
-
-                        //descriptionItems.Add(new System.Windows.Forms.ListViewItem("Cancel", associatedGroup)); // DETAIL_CANCEL
-                        descriptionItems.Add(new System.Windows.Forms.ListViewItem("", associatedGroup)); // DETAIL_CANCEL
-
-                        descriptionItems[DETAIL_CANCEL].BackColor = System.Drawing.Color.Silver;
-                        descriptionItems[DETAIL_CANCEL].ForeColor = System.Drawing.Color.Blue;
-                        descriptionItems[DETAIL_URI].ImageIndex = 0;
-
-                        lvDetails.Items.AddRange(descriptionItems.ToArray());
-                        // gives error: UpdateAutoScroll(ref lvDetails);
-                        lvDetails.Update();
-                    }
-                    #endregion
-
-                    #region Start file download
-
-
-                    if (File.Exists(@temp_path + "\\" + fileName + ".flv"))
-                    {
-                        Random random = new Random();
-
-                        fileName = fileName + "_" + random.Next(0, 5000).ToString();
-                        webClient.DownloadFileAsync(uriData, @temp_path + "\\" + fileName + ".flv", associatedGroup);
-                    }
-
-                    else
-                    {
-                        webClient.DownloadFileAsync(uriData, @temp_path + "\\" + fileName + ".flv", associatedGroup);
-                    }
-
-                    #endregion
-
-                }
-
-            }
-            #endregion
-
-            #region Downloader callback
-            /// <summary>
-            ///     Call back for download complete.
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e">Download complete status</param>
-            private void webClient_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-            {
-
-                #region Check if additional info. is required
-                if (associatedGroup == null)
-                {
-                    return;
-                }
-                #endregion
-
-                #region Process error state
-
-                if (e.Error == null)
-                {
-                 
-                    associatedGroup.Header = String.Format("{0} - completed", fileName);
-                    descriptionItems[DETAIL_BYTES].ForeColor = System.Drawing.Color.Green;
-                    descriptionItems[DETAIL_BYTES].Text = String.Format("File size - {0}", GetHumanReadableFileSize(fileSize));
-
-                    //MessageBox.Show(conversion_description);
-
-                    if (conversion_description.Equals("<Do Nothing, Just Download>"))
-                    {
-                        File.Move(@final_temp + "\\" + fileName + ".flv", @final_conv + "\\" + fileName + ".flv");
-                    }
-
-                    else
-                    {
-                        DirectoryInfo dir_Info = new DirectoryInfo(current_working_directory);
-                        String root = dir_Info.Root.ToString().Replace("\\", "");
-                        String conversion = conversion_description.Replace("%v", "\"" + final_temp + "\\" + fileName + ".flv\"").Replace("%o", "\"" + final_conv + "\\" + fileName + "\"").Replace("ffmpeg", "ffmpeg.exe");
-                        TextWriter convert = new StreamWriter(current_working_directory + "\\tubequeue_latest_conversion.bat");
-                        convert.WriteLine("@echo off");
-                        convert.WriteLine(root);
-                        convert.WriteLine("CD \"" + current_working_directory + "\"");
-                        convert.WriteLine("START " + conversion);
-                        convert.Close();
-
-                        System.Diagnostics.Process convert_proc = new System.Diagnostics.Process();
-                        convert_proc.StartInfo.CreateNoWindow = true;
-
-                        if (prompt_for_vid_conv_final == true)
-
-                            MessageBox.Show("Click OK to start conversion of " + fileName + ".\n(You can turn this notice off in the settings)");
-                        convert_proc = System.Diagnostics.Process.Start(current_working_directory + "\\tubequeue_latest_conversion.bat");
-
-                        convert_proc.WaitForExit();
-
-                    }
-
-
-
-
-                    //descriptionItems[DETAIL_CANCEL].Text = "Remove";
-                    descriptionItems[DETAIL_CANCEL].Text = "";
-                }
-                else if (e.Cancelled == false && e.Error != null)
-                {
-                    associatedGroup.Header = String.Format("{0} - Failed", fileName);
-                    descriptionItems[DETAIL_BYTES].Text = e.Error.Message;
-                    descriptionItems[DETAIL_BYTES].ForeColor = System.Drawing.Color.Red;
-                }
-                #endregion
-
-                #region Process canceled download
-                if (e.Cancelled == true)
-                {
-                    associatedGroup.Header = String.Format("{0} - Canceled", fileName);
-                    descriptionItems[DETAIL_BYTES].ForeColor = System.Drawing.Color.DarkGray;
-                }
-                #endregion
-
-
-
-            }
-
-            /// <summary>
-            ///     A download progress is reported
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e">the download progress information</param>
-            private void webClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-            {
-
-
-                //Application.DoEvents();
-
-
-                #region Check if additional info. is required
-                if (associatedGroup == null)
-                {
-                    return;
-                }
-                #endregion
-
-                #region Show progress info
-                fileSize = e.TotalBytesToReceive;
-                associatedGroup.Header = String.Format("{0} - {1}%", fileName, e.ProgressPercentage);
-                descriptionItems[DETAIL_BYTES].Text = String.Format("Downloaded {0}/{1}", GetHumanReadableFileSize(e.BytesReceived), GetHumanReadableFileSize(fileSize));
-                #endregion
-            }
-            #endregion
-
-
-            #region Helper classes
-            /// <summary>
-            ///     Convert bytes to a human readable format
-            /// </summary>
-            /// <param name="fileSize">the number bytes</param>
-            /// <returns>apropriate amount of bytes (Gb, Mb, Kb, bytes)</returns>
-            private string GetHumanReadableFileSize(long fileSize)
-            {
-                #region Gb
-                if ((fileSize / (1024 * 1024 * 1024)) > 0)
-                {
-
-                    return String.Format("{0} Gb", (double)Math.Round((double)(fileSize / (1024 * 1024 * 1024)), 2));
-                }
-                #endregion
-
-                #region Mb
-                if ((fileSize / (1024 * 1024)) > 0)
-                {
-                    return String.Format("{0} Mb", (double)Math.Round((double)(fileSize / (1024 * 1024)), 2));
-                }
-                #endregion
-
-                #region Kb
-                if ((fileSize / 1024) > 0)
-                {
-                    return String.Format("{0} Kb", (double)Math.Round((double)(fileSize / 1024), 2));
-                }
-                #endregion
-
-                #region Bytes
-                return String.Format("{0} b", fileSize);
-                #endregion
-            }
-            #endregion
-
-            #region Component event handler
-            /// <summary>
-            ///     Process the item click event. Cancel or remove a download. 
-            /// </summary>
-            /// <param name="item">The item which was clicked</param>
-            /// <returns>True if the clicked item is managed by this component</returns>
-            public bool ItemClicked(System.Windows.Forms.ListViewItem item)
-            {
-
-                if (associatedGroup != null && descriptionItems != null && descriptionItems.Count > 0 && item == descriptionItems[DETAIL_CANCEL])
-                {
-                    if (webClient.IsBusy == true)
-                    {
-                        webClient.CancelAsync();
-                    }
-                    else
-                    {
-                        webClient.CancelAsync();
-                        foreach (System.Windows.Forms.ListViewItem itemList in descriptionItems)
-                        {
-                            lvDetails.Items.Remove(itemList);
-                            itemList.Remove();
-                        }
-
-                        descriptionItems.Clear();
-                        lvDetails.Groups.Remove(associatedGroup);
-                    }
-
-                    return true;
-                }
-
-                return false;
-            }
-            #endregion
-        }
-
-        public class MyComboBoxItem
-        {
-            private string _name;
-            private string _value;
-
-            public MyComboBoxItem(string name, string value)
-            {
-                _name = name;
-                _value = value;
-            }
-
-            public override string ToString()
-            {
-                return _name;
-            }
-
-            public String getValue()
-            {
-                return _value;
-            }
-
-
-        }
-
-        public class StyleHelper
-        {
-            public static void DisableFlicker(System.Windows.Forms.Control ctrl)
-            {
-                MethodInfo method = ctrl.GetType().GetMethod("SetStyle", BindingFlags.Instance | BindingFlags.NonPublic);
-                if (method != null)
-                {
-                    method.Invoke(ctrl, new object[] { ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true });
-                }
-            }
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -2480,14 +1947,11 @@ namespace Form1
 
         }
 
-
-
         private void grab_url_of_video_Click(object sender, EventArgs e)
         {
 
             getURLFromWebview();
         }
-
 
         public void getURLFromWebview()
         {
@@ -2505,14 +1969,6 @@ namespace Form1
             queue_sync_iteration++;
         }
 
-
-       
-
-        private void yt_browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
-
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Help.ShowHelp(this, "http://www.andrewsteinhome.com");
@@ -2520,12 +1976,36 @@ namespace Form1
 
         private void TubeQueue_FormClosing(object sender, FormClosingEventArgs e)
         {
+
+            // clean out the temporary directory if the setting is set
+
+            try
+            {
+                if (cbClearTempDirOnExit.Checked)
+                {
+
+                    string[] tempFiles = Directory.GetFiles(temp_path);
+
+                    foreach (string files in tempFiles)
+                    {
+                        // we don't want to delete "do not delete.txt"
+
+                        if (new FileInfo(files).Extension != ".txt")
+                        {
+                            File.Delete(files);
+                        }
+                      
+                    }
+                }
+            
+            }
+
+            catch
+            {
+                MessageBox.Show("Could not empty temporary directory - possibly a permissions issue");
+            }
+          
             progressWin.Kill();
-        }
-
-        private void addsingleURL_Opening(object sender, CancelEventArgs e)
-        {
-
         }
 
         private void queue_MouseUp_1(object sender, MouseEventArgs e)
@@ -2548,12 +2028,6 @@ namespace Form1
             }
         }
 
-        private void queue_MouseDown(object sender, MouseEventArgs e)
-        {
-
-
-        }
-
         private void rename_queue_menu_options_Click(object sender, EventArgs e)
         {
 
@@ -2574,12 +2048,6 @@ namespace Form1
                 item.Remove();
                 queue_sync_iteration--;
             }
-        }
-
-        private void queue_AfterLabelEdit(object sender, LabelEditEventArgs e)
-        {
-
-
         }
 
         private void closeToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -2606,16 +2074,6 @@ namespace Form1
             //Point temp = new Point (addURLToQueue.Location.X, addURLToQueue.Location.Y);
 
             addsingleURL.Show(addURLToQueue, e.Location); ;
-        }
-
-        private void openLocalFLVFile_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -2647,17 +2105,20 @@ namespace Form1
 
         private void maximizeOrMinimizeSearchListButton_Click(object sender, EventArgs e)
         {
-            // currently minimized by we want to maximize it 
+            // currently minimized but we want to maximize it 
 
             if (maximizeOrMinimizeSearchListButton.Tag.ToString() == "minimized")
             {
                 searchList_Maximize();
+                maximizeOrMinimizeSearchListButton.Tag = "";
             }
 
             // we are resetting to defaults
             else
             {
                 searchList_Minimize();
+                maximizeOrMinimizeSearchListButton.Tag = "minimized";
+             
 
             }
 
@@ -2675,7 +2136,7 @@ namespace Form1
             searchList.Columns[2].Width = originalDescriptionColumnWidth;
             searchList.Columns[1].Width = originalTitleColumnWidth;
 
-            maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.min;
+            maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.max;
         }
 
         private void searchList_Maximize()
@@ -2691,12 +2152,83 @@ namespace Form1
 
             maximizeOrMinimizeSearchListButton.Tag = "maximized";
 
-            maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.max;
+            maximizeOrMinimizeSearchListButton.Image = global::TubeQueue.Properties.Resources.min;
+        }
+
+        private void maximizeYTbutton_MouseLeave(object sender, EventArgs e)
+        {
+            if (ttHelp != null)
+            {
+                ttHelp.Dispose();
+            }
+        }
+
+        private void maximizeYTbutton_MouseEnter(object sender, EventArgs e)
+        {
+            ttHelp = new ToolTip();
+            ttHelp.IsBalloon = true;
+            ttHelp.SetToolTip(maximizeYTbutton, "Maximize the YouTube window");
+
+        }
+
+        private void maximizeOrMinimizeSearchListButton_MouseEnter(object sender, EventArgs e)
+        {
+            ttHelp = new ToolTip();
+            ttHelp.IsBalloon = true;
+            ttHelp.SetToolTip(maximizeOrMinimizeSearchListButton, "Maximize or minimize the search grid");
+        }
+
+        private void maximizeOrMinimizeSearchListButton_MouseLeave(object sender, EventArgs e)
+        {
+            if (ttHelp != null)
+            {
+                ttHelp.Dispose();
+            }
+        }
+
+        private void pagePrevious25_MouseEnter(object sender, EventArgs e)
+        {
+            ttHelp = new ToolTip();
+            ttHelp.IsBalloon = true;
+            ttHelp.SetToolTip(pagePrevious25 , "Previous 25 results");
+        }
+
+        private void pagePrevious25_MouseLeave(object sender, EventArgs e)
+        {
+            if (ttHelp != null)
+            {
+                ttHelp.Dispose();
+            }
+        }
+
+        private void pageNext25_MouseEnter(object sender, EventArgs e)
+        {
+            ttHelp = new ToolTip();
+            ttHelp.IsBalloon = true;
+            ttHelp.SetToolTip(pageNext25 , "Next 25 results");
+        }
+
+        private void pageNext25_MouseLeave(object sender, EventArgs e)
+        {
+            if (ttHelp != null)
+            {
+                ttHelp.Dispose();
+            }
+        }
+
+        private void lvMediaLibrary_DoubleClick(object sender, EventArgs e)
+        {
+            String fName = lvMediaLibrary.SelectedItems[0].Tag.ToString();
+            System.Diagnostics.Process.Start(fName);
         }
 
       
     }
 }
+
+// supporting classes
+
+#region ListViewNF Class
 
 class ListViewNF : System.Windows.Forms.ListView
 {
@@ -2719,3 +2251,407 @@ class ListViewNF : System.Windows.Forms.ListView
         }
     }
 }
+
+#endregion  
+
+#region DownloaderTask class
+
+class DownloaderTask
+{
+    string current_working_directory = Application.StartupPath;
+
+    #region Private fields
+    private WebClient webClient;
+    private string fileName;
+
+    bool local_file_global;
+    string final_temp = "";
+    string final_conv = "";
+
+    private string conversion_description;
+    bool prompt_for_vid_conv_final;
+    private Uri uriData;
+    private long fileSize;
+
+    private System.Windows.Forms.ListView lvDetails;
+    private System.Windows.Forms.ListViewGroup associatedGroup;
+    private List<System.Windows.Forms.ListViewItem> descriptionItems;
+
+    private const int DETAIL_URI = 0;
+    private const int DETAIL_BYTES = 1;
+    private const int DETAIL_CANCEL = 2;
+    #endregion
+
+    #region Constructors
+    /// <summary>
+    ///     Default constructor  
+    /// </summary>
+    /// <param name="uriData">the URI to the downloadable resource</param>
+    public DownloaderTask(Uri uriData)
+        : this(uriData, null, null, null, null, null, false, false)
+    {
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="uriString"></param>
+    public DownloaderTask(string uriString)
+        : this(new Uri(uriString), null, null, null, null, null, false, false)
+    {
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="uriString"></param>
+    /// <param name="lvDetails"></param>
+    public DownloaderTask(string uriString, System.Windows.Forms.ListView lvDetails)
+        : this(new Uri(uriString), lvDetails, null, null, null, null, false, false)
+    {
+    }
+
+    /// <summary>
+    ///     The intialization constructor
+    /// </summary>
+    /// <param name="uriData">The URI to downloadable resource</param>
+    /// <param name="lvDetails">The list view wich holds status info</param>
+    public DownloaderTask(Uri uriData, System.Windows.Forms.ListView lvDetails, string title, string conversion_descrip, string temp_path, string video_conv_path, bool prompt_for_vid_conv, bool local_file)
+    {
+        local_file_global = local_file;
+
+        prompt_for_vid_conv_final = prompt_for_vid_conv;
+
+        final_temp = temp_path;
+        final_conv = video_conv_path;
+
+        conversion_description = conversion_descrip;
+
+        // Case: File is local
+
+        if (local_file_global)
+        {
+            fileName = title;
+
+            if (conversion_description.Equals("<Do Nothing, Just Download>"))
+            {
+                File.Move(@final_temp + "\\" + fileName + ".flv", @final_conv + "\\" + fileName + ".flv");
+            }
+
+            else
+            {
+                DirectoryInfo dir_Info = new DirectoryInfo(current_working_directory);
+                String root = dir_Info.Root.ToString().Replace("\\", "");
+
+                FileInfo fInfo = new FileInfo(fileName);
+                String file_name = fInfo.Name.Replace(fInfo.Extension, "");
+                String conversion = conversion_description.Replace("%v", "\"" + fileName + "\"").Replace("%o", "\"" + final_conv + "\\" + file_name + "\"").Replace("ffmpeg", "ffmpeg.exe");
+                TextWriter convert = new StreamWriter(current_working_directory + "\\tubequeue_latest_conversion.bat");
+                convert.WriteLine("@echo off");
+                convert.WriteLine(root);
+                convert.WriteLine("CD \"" + current_working_directory + "\"");
+                convert.WriteLine("START " + conversion);
+                convert.Close();
+
+                System.Diagnostics.Process convert_proc = new System.Diagnostics.Process();
+                convert_proc.StartInfo.CreateNoWindow = true;
+
+                if (prompt_for_vid_conv_final == true)
+
+                    MessageBox.Show("Click OK to start conversion of " + fileName + ".\n(You can turn this notice off in the Settings.)");
+                convert_proc = System.Diagnostics.Process.Start(current_working_directory + "\\tubequeue_latest_conversion.bat");
+
+                convert_proc.WaitForExit();
+
+            }
+
+        }
+        else
+        {
+            #region Prepare for download
+            this.uriData = uriData;
+            fileName = title;
+            webClient = new WebClient();
+            this.lvDetails = lvDetails;
+            #endregion
+
+            #region Assign call backs
+
+            lvDetails.Width = lvDetails.Width + 50;
+            if (lvDetails != null)
+            {
+                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
+                webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
+
+
+                associatedGroup = lvDetails.Groups.Add((new Guid()).ToString(), String.Format("{0} - starting ... ", fileName));
+
+                descriptionItems = new List<System.Windows.Forms.ListViewItem>();
+                descriptionItems.Add(new System.Windows.Forms.ListViewItem(uriData.OriginalString, associatedGroup)); // DETAIL_URI
+                descriptionItems.Add(new System.Windows.Forms.ListViewItem("Downloaded 0/? bytes", associatedGroup)); // DETAIL_BYTES
+
+                //descriptionItems.Add(new System.Windows.Forms.ListViewItem("Cancel", associatedGroup)); // DETAIL_CANCEL
+                descriptionItems.Add(new System.Windows.Forms.ListViewItem("", associatedGroup)); // DETAIL_CANCEL
+
+                descriptionItems[DETAIL_CANCEL].BackColor = System.Drawing.Color.Silver;
+                descriptionItems[DETAIL_CANCEL].ForeColor = System.Drawing.Color.Blue;
+                descriptionItems[DETAIL_URI].ImageIndex = 0;
+
+                lvDetails.Items.AddRange(descriptionItems.ToArray());
+                // gives error: UpdateAutoScroll(ref lvDetails);
+                lvDetails.Update();
+            }
+            #endregion
+
+            #region Start file download
+
+
+            if (File.Exists(@temp_path + "\\" + fileName + ".flv"))
+            {
+                Random random = new Random();
+
+                fileName = fileName + "_" + random.Next(0, 5000).ToString();
+                webClient.DownloadFileAsync(uriData, @temp_path + "\\" + fileName + ".flv", associatedGroup);
+            }
+
+            else
+            {
+                webClient.DownloadFileAsync(uriData, @temp_path + "\\" + fileName + ".flv", associatedGroup);
+            }
+
+            #endregion
+
+        }
+
+    }
+    #endregion
+
+    #region Downloader callback
+    /// <summary>
+    ///     Call back for download complete.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e">Download complete status</param>
+    private void webClient_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+    {
+
+        #region Check if additional info. is required
+        if (associatedGroup == null)
+        {
+            return;
+        }
+        #endregion
+
+        #region Process error state
+
+        if (e.Error == null)
+        {
+
+            associatedGroup.Header = String.Format("{0} - completed", fileName);
+            descriptionItems[DETAIL_BYTES].ForeColor = System.Drawing.Color.Green;
+            descriptionItems[DETAIL_BYTES].Text = String.Format("File size - {0}", GetHumanReadableFileSize(fileSize));
+
+            //MessageBox.Show(conversion_description);
+
+            if (conversion_description.Equals("<Do Nothing, Just Download>"))
+            {
+                File.Move(@final_temp + "\\" + fileName + ".flv", @final_conv + "\\" + fileName + ".flv");
+            }
+
+            else
+            {
+                DirectoryInfo dir_Info = new DirectoryInfo(current_working_directory);
+                String root = dir_Info.Root.ToString().Replace("\\", "");
+                String conversion = conversion_description.Replace("%v", "\"" + final_temp + "\\" + fileName + ".flv\"").Replace("%o", "\"" + final_conv + "\\" + fileName + "\"").Replace("ffmpeg", "ffmpeg.exe");
+                TextWriter convert = new StreamWriter(current_working_directory + "\\tubequeue_latest_conversion.bat");
+                convert.WriteLine("@echo off");
+                convert.WriteLine(root);
+                convert.WriteLine("CD \"" + current_working_directory + "\"");
+                convert.WriteLine("START " + conversion);
+                convert.Close();
+
+                System.Diagnostics.Process convert_proc = new System.Diagnostics.Process();
+                convert_proc.StartInfo.CreateNoWindow = true;
+
+                if (prompt_for_vid_conv_final == true)
+
+                    MessageBox.Show("Click OK to start conversion of " + fileName + ".\n(You can turn this notice off in the settings)");
+                convert_proc = System.Diagnostics.Process.Start(current_working_directory + "\\tubequeue_latest_conversion.bat");
+
+                convert_proc.WaitForExit();
+
+            }
+
+
+
+
+            //descriptionItems[DETAIL_CANCEL].Text = "Remove";
+            descriptionItems[DETAIL_CANCEL].Text = "";
+        }
+        else if (e.Cancelled == false && e.Error != null)
+        {
+            associatedGroup.Header = String.Format("{0} - Failed", fileName);
+            descriptionItems[DETAIL_BYTES].Text = e.Error.Message;
+            descriptionItems[DETAIL_BYTES].ForeColor = System.Drawing.Color.Red;
+        }
+        #endregion
+
+        #region Process canceled download
+        if (e.Cancelled == true)
+        {
+            associatedGroup.Header = String.Format("{0} - Canceled", fileName);
+            descriptionItems[DETAIL_BYTES].ForeColor = System.Drawing.Color.DarkGray;
+        }
+        #endregion
+
+
+
+    }
+
+    /// <summary>
+    ///     A download progress is reported
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e">the download progress information</param>
+    private void webClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+    {
+
+
+        //Application.DoEvents();
+
+
+        #region Check if additional info. is required
+        if (associatedGroup == null)
+        {
+            return;
+        }
+        #endregion
+
+        #region Show progress info
+        fileSize = e.TotalBytesToReceive;
+        associatedGroup.Header = String.Format("{0} - {1}%", fileName, e.ProgressPercentage);
+        descriptionItems[DETAIL_BYTES].Text = String.Format("Downloaded {0}/{1}", GetHumanReadableFileSize(e.BytesReceived), GetHumanReadableFileSize(fileSize));
+        #endregion
+    }
+    #endregion
+
+
+    #region Helper classes
+    /// <summary>
+    ///     Convert bytes to a human readable format
+    /// </summary>
+    /// <param name="fileSize">the number bytes</param>
+    /// <returns>apropriate amount of bytes (Gb, Mb, Kb, bytes)</returns>
+    private string GetHumanReadableFileSize(long fileSize)
+    {
+        #region Gb
+        if ((fileSize / (1024 * 1024 * 1024)) > 0)
+        {
+
+            return String.Format("{0} Gb", (double)Math.Round((double)(fileSize / (1024 * 1024 * 1024)), 2));
+        }
+        #endregion
+
+        #region Mb
+        if ((fileSize / (1024 * 1024)) > 0)
+        {
+            return String.Format("{0} Mb", (double)Math.Round((double)(fileSize / (1024 * 1024)), 2));
+        }
+        #endregion
+
+        #region Kb
+        if ((fileSize / 1024) > 0)
+        {
+            return String.Format("{0} Kb", (double)Math.Round((double)(fileSize / 1024), 2));
+        }
+        #endregion
+
+        #region Bytes
+        return String.Format("{0} b", fileSize);
+        #endregion
+    }
+    #endregion
+
+    #region Component event handler
+    /// <summary>
+    ///     Process the item click event. Cancel or remove a download. 
+    /// </summary>
+    /// <param name="item">The item which was clicked</param>
+    /// <returns>True if the clicked item is managed by this component</returns>
+    public bool ItemClicked(System.Windows.Forms.ListViewItem item)
+    {
+
+        if (associatedGroup != null && descriptionItems != null && descriptionItems.Count > 0 && item == descriptionItems[DETAIL_CANCEL])
+        {
+            if (webClient.IsBusy == true)
+            {
+                webClient.CancelAsync();
+            }
+            else
+            {
+                webClient.CancelAsync();
+                foreach (System.Windows.Forms.ListViewItem itemList in descriptionItems)
+                {
+                    lvDetails.Items.Remove(itemList);
+                    itemList.Remove();
+                }
+
+                descriptionItems.Clear();
+                lvDetails.Groups.Remove(associatedGroup);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+    #endregion
+}
+
+#endregion
+
+#region MyComboBoxItem class
+
+public class MyComboBoxItem
+{
+    private string _name;
+    private string _value;
+
+    public MyComboBoxItem(string name, string value)
+    {
+        _name = name;
+        _value = value;
+    }
+
+    public override string ToString()
+    {
+        return _name;
+    }
+
+    public String getValue()
+    {
+        return _value;
+    }
+
+}
+
+#endregion
+
+#region StyleHelper class
+
+public class StyleHelper
+{
+    public static void DisableFlicker(System.Windows.Forms.Control ctrl)
+    {
+        MethodInfo method = ctrl.GetType().GetMethod("SetStyle", BindingFlags.Instance | BindingFlags.NonPublic);
+        if (method != null)
+        {
+            method.Invoke(ctrl, new object[] { ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true });
+        }
+    }
+}
+
+#endregion
+

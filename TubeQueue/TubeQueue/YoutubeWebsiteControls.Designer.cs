@@ -34,6 +34,7 @@
             // 
             // grab_url_of_video
             // 
+            this.grab_url_of_video.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.grab_url_of_video.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grab_url_of_video.ForeColor = System.Drawing.Color.Red;
             this.grab_url_of_video.Location = new System.Drawing.Point(12, 12);
@@ -70,6 +71,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "YoutubeWebsiteControls";
+            this.Opacity = 0.9D;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Controls";
             this.TopMost = true;
