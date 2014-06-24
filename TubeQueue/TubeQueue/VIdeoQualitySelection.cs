@@ -32,33 +32,32 @@ namespace TubeQueue
             //dT.Columns.Add("URL");
             //dT.Columns.Add("Link");
 
+            // this library is too slow
 
-            IList<SS.YoutubeDownloader.AdvLib.YouTubeVideoQuality> dls = YouTubeDownloader.GetYouTubeVideoUrls(new String[1] { url });
+            //IList<SS.YoutubeDownloader.AdvLib.YouTubeVideoQuality> dls = YouTubeDownloader.GetYouTubeVideoUrls(new String[1] { url });
 
             YTDownload.YTDownload yt = new YTDownload.YTDownload(url);
 
-
-
             label1.Text = yt.getTitle;
-                    
-            //Dictionary<String, String> urls = yt.GetAllUrls;
 
-          //  foreach (KeyValuePair<string, string> entry in urls)
-            //{
-            //    dataGridView1.Rows.Add(new String[2]{entry.Key,entry.Value});
- 
-            //}
+            Dictionary<String, String> urls = yt.GetAllUrls;
 
-            foreach (var item in dls)
+            foreach (KeyValuePair<string, string> entry in urls)
             {
-                 string videoExtention = item.Extention;
-                 string videoDimension = BeautifyVideoSize(item.Dimension);
-                 string videoSize = BeautifySize(item.VideoSize);
-                 
-                 dataGridView1.Rows.Add(new String[2]{videoExtention + " " + videoDimension + " " + videoSize ,item.DownloadUrl});
-              
+                dataGridView1.Rows.Add(new String[2] { entry.Key, entry.Value });
 
             }
+
+            //foreach (var item in dls)
+            //{
+            //     string videoExtention = item.Extention;
+            //     string videoDimension = BeautifyVideoSize(item.Dimension);
+            //     string videoSize = BeautifySize(item.VideoSize);
+                 
+            //     dataGridView1.Rows.Add(new String[2]{videoExtention + " " + videoDimension + " " + videoSize ,item.DownloadUrl});
+              
+
+            //}
 
 
             //dataGridView1.DataSource = dT;
@@ -100,6 +99,11 @@ namespace TubeQueue
             }
 
           
+        }
+
+        private void VideoQualitySelection_Load(object sender, EventArgs e)
+        {
+
         }
 
     }
